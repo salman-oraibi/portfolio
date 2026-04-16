@@ -203,7 +203,9 @@ No backend, no database. Everything is flat files + browser JS.
 
 ## Current Status
 
-**Phase 3 in progress — image filtering pipeline being refined**
+**Phase 4 complete — site live on GitHub Pages**
+
+**URL:** https://salman-oraibi.github.io/portfolio
 
 ### Completed
 
@@ -215,6 +217,11 @@ No backend, no database. Everything is flat files + browser JS.
 - Image scoring using Laplacian variance + color entropy implemented
 - Scores confirmed: JPEGs score 2–12, decorative PNGs score ~0
 - Default `--min-score` updated to 2.0, `--jpeg-only` flag added
+- All 18 posts generated and live
+- GitHub Pages deployment working
+- `.nojekyll` fix applied for markdown serving
+- 110 filtered images committed to `docs/images/`
+- Em dash filenames confirmed working fine in browsers
 
 ## Pending UI Improvements
 
@@ -228,8 +235,6 @@ These are deferred until after all posts are generated and core functionality is
 
 ### Next Session — Pick Up Here
 
-1. Test image filtering with: `--min-score 2.0 --jpeg-only`
-2. Confirm image count is reasonable (target 5–15 per PDF)
-3. Generate first portfolio post for Adidas Harden 7 project (pages 5–6)
-4. Review and refine the generated markdown
-5. Move to site rendering and admin panel
+1. Flask admin panel (create/edit posts, LLM enhancement)
+2. UI polish (carousel, image gallery, visual redesign)
+3. Review post content quality across all 18 posts
