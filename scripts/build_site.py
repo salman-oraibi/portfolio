@@ -1,11 +1,11 @@
 """
-build_site.py
+build_docs.py
 
 Reads all markdown files in content/, parses their frontmatter, and writes
-site/posts.json (the manifest the JS app uses) and copies the .md files to
-site/content/ so they can be fetched by the browser.
+docs/posts.json (the manifest the JS app uses) and copies the .md files to
+docs/content/ so they can be fetched by the browser.
 
-Usage: python build_site.py
+Usage: python build_docs.py
 """
 
 import json
@@ -16,7 +16,7 @@ import frontmatter
 
 
 CONTENT_DIR = Path("content")
-SITE_DIR = Path("site")
+SITE_DIR = Path("docs")
 SITE_CONTENT_DIR = SITE_DIR / "content"
 
 
@@ -54,8 +54,8 @@ def build():
     manifest_path = SITE_DIR / "posts.json"
     manifest_path.write_text(json.dumps(posts, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    print(f"Copied {copied} markdown file(s) to site/content/")
-    print(f"Written site/posts.json with {len(posts)} post(s)")
+    print(f"Copied {copied} markdown file(s) to docs/content/")
+    print(f"Written docs/posts.json with {len(posts)} post(s)")
 
 
 if __name__ == "__main__":

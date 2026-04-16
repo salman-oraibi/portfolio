@@ -1,7 +1,7 @@
 # Portfolio Generator
 
 A Python pipeline that turns company PDF brochures + a resume into a clean,
-story-driven portfolio website — powered by Claude.  
+story-driven portfolio webdocs — powered by Claude.  
 Comes with a built-in admin panel for writing stories manually.
 
 ---
@@ -27,11 +27,11 @@ python scripts/generate_post.py \
   --title   "What I Built at Acme" \
   --branch  "Acme Corp"
 
-# 5. Build the site manifest
-python scripts/build_site.py
+# 5. Build the docs manifest
+python scripts/build_docs.py
 
 # 6. Preview
-python -m http.server 8080 --directory site
+python -m http.server 8080 --directory docs
 # → open http://localhost:8080
 ```
 
@@ -40,12 +40,12 @@ python -m http.server 8080 --directory site
 ## Quick Start (admin panel)
 
 ```bash
-python -m http.server 8080 --directory site
+python -m http.server 8080 --directory docs
 # → open http://localhost:8080/admin.html
 ```
 
 Fill in the form, click **Download .md**, move it to `content/`, then re-run
-`python scripts/build_site.py`.
+`python scripts/build_docs.py`.
 
 ---
 
@@ -58,9 +58,9 @@ PDFs  ──extract_pdf.py──▶  text + images
                                 │
                          content/*.md
                                 │
-                         build_site.py
+                         build_docs.py
                                 │
-                  site/posts.json + site/content/
+                  docs/posts.json + docs/content/
                                 │
                       Browser (app.js) renders
                        cards, filters, modal
@@ -70,7 +70,7 @@ PDFs  ──extract_pdf.py──▶  text + images
 |---|---|---|
 | Extract | `extract_pdf.py` | JSON (text + image paths) |
 | Generate | `generate_post.py` | `content/<slug>.md` |
-| Build | `build_site.py` | `site/posts.json`, `site/content/` |
+| Build | `build_docs.py` | `docs/posts.json`, `docs/content/` |
 
 ---
 
@@ -98,7 +98,7 @@ images:
 data/        ← PDFs (resume + company brochures)
 scripts/     ← pipeline scripts
 content/     ← generated / hand-written markdown posts
-site/        ← static website
+docs/        ← static webdocs
   index.html     portfolio page
   admin.html     write new stories
   posts.json     built manifest

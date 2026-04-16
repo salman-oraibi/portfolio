@@ -25,12 +25,12 @@ portfolio-project/
 ├── scripts/                 # Python pipeline scripts
 │   ├── extract_pdf.py       # Extracts text + images from a PDF → JSON
 │   ├── generate_post.py     # Claude API: PDF pair → markdown post
-│   ├── build_site.py        # Reads content/*.md → site/posts.json + copies files
+│   ├── build_site.py        # Reads content/*.md → docs/posts.json + copies files
 │   └── templates/           # (legacy Jinja template, unused)
 │
 ├── content/                 # Generated markdown posts (one file per project)
 │
-├── site/                    # Final static website (open index.html in a browser)
+├── docs/                    # Final static website (open index.html in a browser)
 │   ├── index.html           # JS-driven portfolio page
 │   ├── admin.html           # Admin panel — write & download new stories
 │   ├── posts.json           # Manifest built by build_site.py
@@ -65,7 +65,7 @@ tags:
   - React
   - Node.js
 images:
-  - screenshot.png              # filenames inside site/images/
+  - screenshot.png              # filenames inside docs/images/
 ---
 ```
 
@@ -109,12 +109,12 @@ Output: `content/building-a-real-time-dashboard.md`
 python scripts/build_site.py
 ```
 
-Copies `content/*.md` → `site/content/` and writes `site/posts.json`.
+Copies `content/*.md` → `docs/content/` and writes `docs/posts.json`.
 
 #### 5. Preview
 
 ```bash
-python -m http.server 8080 --directory site
+python -m http.server 8080 --directory docs
 # open http://localhost:8080
 ```
 
@@ -122,11 +122,11 @@ python -m http.server 8080 --directory site
 
 ### B — Manual post via the admin panel
 
-1. Serve the site: `python -m http.server 8080 --directory site`
+1. Serve the site: `python -m http.server 8080 --directory docs`
 2. Open `http://localhost:8080/admin.html`
 3. Fill in the form (title, summary, branch, tags, body in markdown, images)
 4. Click **Download .md** → save the file to `content/`
-5. Click **Download images** → save images to `site/images/`
+5. Click **Download images** → save images to `docs/images/`
 6. Run `python scripts/build_site.py`
 
 ---
@@ -137,7 +137,7 @@ python -m http.server 8080 --directory site
 |---|---|
 | `extract_pdf.py` | Standalone PDF extractor — prints JSON with pages + image paths |
 | `generate_post.py` | Full AI pipeline: extract → call Claude → save markdown |
-| `build_site.py` | Copies `content/*.md` to `site/content/`, writes `site/posts.json` |
+| `build_site.py` | Copies `content/*.md` to `docs/content/`, writes `docs/posts.json` |
 
 ---
 
@@ -194,8 +194,8 @@ The `context_files` array is optional — omit it or leave it empty if no extra 
 
 No backend, no database. Everything is flat files + browser JS.
 
-- `site/posts.json` — manifest of post metadata (title, summary, date, branch, tags, images)
-- `site/content/` — full markdown bodies, fetched on demand when a user opens a post
+- `docs/posts.json` — manifest of post metadata (title, summary, date, branch, tags, images)
+- `docs/content/` — full markdown bodies, fetched on demand when a user opens a post
 - `app.js` — fetches the manifest on load, renders filter buttons and card grid, opens posts in a modal
 - `admin.js` — generates a valid markdown file with frontmatter for download; no server writes
 

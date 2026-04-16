@@ -131,7 +131,7 @@ def extract_pdf(
         raise FileNotFoundError(f"PDF not found: {pdf_path}")
 
     if output_dir is None:
-        output_dir = Path("site/images")
+        output_dir = Path("docs/images")
     else:
         output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -189,7 +189,7 @@ def extract_pdf(
 def main():
     parser = argparse.ArgumentParser(description="Extract text and images from a PDF.")
     parser.add_argument("pdf", help="Path to the PDF file")
-    parser.add_argument("--output-dir", default="site/images", help="Directory to save extracted images")
+    parser.add_argument("--output-dir", default="docs/images", help="Directory to save extracted images")
     parser.add_argument("--skip-pages", type=int, default=0, metavar="N", help="Skip the first N pages (e.g. cover/TOC)")
     parser.add_argument("--min-width", type=int, default=200, metavar="PX", help="Minimum image width in pixels (default 200)")
     parser.add_argument("--min-height", type=int, default=200, metavar="PX", help="Minimum image height in pixels (default 200)")
