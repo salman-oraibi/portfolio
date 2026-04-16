@@ -30,6 +30,7 @@ def main():
     parser = argparse.ArgumentParser(description="Batch-generate prompt drafts for all posts in posts_config.json.")
     parser.add_argument("--only", metavar="TITLE", help="Process only posts whose title contains this substring")
     parser.add_argument("--dry-run", action="store_true", help="Print commands without running them")
+    parser.add_argument("--global-context", default="data/context/career_positioning.txt", metavar="FILE", help="Global career positioning context file passed to every post (default: data/context/career_positioning.txt)")
     args = parser.parse_args()
 
     config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
@@ -92,6 +93,8 @@ def main():
         context_files = post.get("context_files", [])
         if context_files:
             cmd += ["--context-files"] + context_files
+
+        cmd += ["--global-context", args.global_context]
 
         print(f"  [{post_slug}]")
         if args.dry_run:

@@ -132,6 +132,7 @@ def build_prompt(
     min_score: float = 2.0,
     jpeg_only: bool = False,
     context_files: list[str] | None = None,
+    global_context_file: str | None = None,
 ) -> str:
     """
     Extract text from PDFs and return the full prompt string.
@@ -168,6 +169,20 @@ def build_prompt(
         if all_images else ""
     )
 
+    global_context_section = ""
+    global_context_instructions = ""
+    if global_context_file and Path(global_context_file).exists():
+        text = Path(global_context_file).read_text(encoding="utf-8")[:3000]
+        global_context_section = f"\n---\nCAREER POSITIONING & ROLE CONTEXT:\n{text}"
+        global_context_instructions = (
+            "Use the CAREER POSITIONING & ROLE CONTEXT above to:\n"
+            "- Frame the author as a leader and decision-maker, not a solo practitioner\n"
+            "- Align the narrative with the target roles mentioned in that context\n"
+            "- Highlight skills and achievements that match the suggested career paths\n"
+            "- Use seniority-appropriate language (led, drove, owned, architected, directed) throughout\n"
+            "---\n"
+        )
+
     additional_context_section = ""
     if context_files:
         parts = []
@@ -192,9 +207,10 @@ COMPANY / PROJECT CONTEXT:
 ---
 RESUME:
 {resume_text[:3000]}
+{global_context_section}
 {additional_context_section}
 ---
-Output a complete markdown document. Use this exact frontmatter block at the top, filling in
+{global_context_instructions}Output a complete markdown document. Use this exact frontmatter block at the top, filling in
 the values based on the content:
 
 ---
@@ -235,6 +251,7 @@ def main():
     parser.add_argument("--min-score", type=float, default=2.0, metavar="N", help="Minimum visual-interest score for extracted images (default 2.0)")
     parser.add_argument("--jpeg-only", action="store_true", default=False, help="Skip PNG images with score below 1.0 (usually decorative overlays)")
     parser.add_argument("--context-files", nargs="*", default=[], metavar="FILE", help="Additional text files providing extra context (truncated to 2000 chars each)")
+    parser.add_argument("--global-context", default="data/context/career_positioning.txt", metavar="FILE", help="Global career positioning context file injected into every prompt (default: data/context/career_positioning.txt)")
     parser.add_argument("--output", help="Output .md file path (default: content/<slug>.md)")
     args = parser.parse_args()
 
@@ -257,6 +274,7 @@ def main():
             min_score=args.min_score,
             jpeg_only=args.jpeg_only,
             context_files=args.context_files,
+            global_context_file=args.global_context,
         )
     except FileNotFoundError as e:
         print(f"Error: {e}", file=sys.stderr)

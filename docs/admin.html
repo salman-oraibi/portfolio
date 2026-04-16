@@ -1,99 +1,1614 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>New Story — Portfolio Admin</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/admin.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Portfolio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f0f0f;
+      --surface:   #1a1a1a;
+      --surface2:  #222;
+      --border:    #2a2a2a;
+      --text:      #e4e4e4;
+      --muted:     #888;
+      --accent:    #7c8cff;
+      --accent-dk: #5a69e8;
+      --green:     #4ade80;
+      --red:       #f87171;
+      --yellow:    #fbbf24;
+      --radius:    8px;
+      --sidebar-w: 280px;
+      --font:      'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar-header {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .sidebar-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .back-link {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    .sidebar-top {
+      padding: 0.65rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .btn-new {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.45rem;
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      font-weight: 500;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-new:hover { background: var(--accent-dk); }
+
+    .search-input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.35rem 0.6rem;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-family: var(--font);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--muted); opacity: 0.7; }
+
+    .post-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.4rem 0;
+    }
+
+    .post-item {
+      padding: 0.55rem 0.75rem;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: background 0.1s, border-color 0.1s;
+      position: relative;
+    }
+    .post-item:hover { background: rgba(255,255,255,0.03); }
+    .post-item.active {
+      background: color-mix(in srgb, var(--accent) 7%, transparent);
+      border-left-color: var(--accent);
+    }
+
+    .post-item-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 1.4rem;
+    }
+    .post-item.dirty .post-item-title::before {
+      content: '• ';
+      color: var(--yellow);
+    }
+
+    .post-item-branch {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .post-item-del {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: transparent;
+      cursor: pointer;
+      padding: 0.2rem 0.3rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      line-height: 1;
+      transition: color 0.15s;
+    }
+    .post-item:hover .post-item-del { color: var(--muted); }
+    .post-item-del:hover { color: var(--red) !important; }
+
+    .list-empty {
+      padding: 2rem 0.75rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    /* ── Main panel ── */
+    .main-panel {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .editor-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.75rem 2rem 1rem;
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--muted);
+    }
+    .empty-state .icon { font-size: 2.5rem; opacity: 0.25; }
+    .empty-state p { font-size: 0.85rem; }
+
+    /* ── Editor form ── */
+    .editor-form {
+      display: none;
+      max-width: 820px;
+    }
+    .editor-form.show { display: block; }
+
+    .section { margin-bottom: 1.5rem; }
+
+    .sec-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 150px;
+      gap: 0.75rem;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 0.3rem; }
+
+    label.field-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 0.65rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-family: var(--font);
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    textarea:focus,
+    select:focus { border-color: var(--accent); }
+    ::placeholder { color: var(--muted); opacity: 0.55; }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.5);
+      cursor: pointer;
+    }
+
+    textarea { resize: vertical; }
+    input[type="file"] { display: none; }
+
+    /* ── Tags ── */
+    .tag-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.4rem;
+      min-height: 1.5rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.73rem;
+    }
+    .chip-x {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.1s;
+    }
+    .chip-x:hover { color: var(--red); }
+
+    /* ── Images ── */
+    .images-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .img-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.3rem 0.5rem 0.3rem 0.35rem;
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+    .img-chip img {
+      width: 26px; height: 26px;
+      object-fit: cover;
+      border-radius: 3px;
+      background: var(--border);
+    }
+    .img-chip-x {
+      background: none; border: none;
+      color: var(--muted); cursor: pointer;
+      font-size: 0.8rem; padding: 0; line-height: 1;
+      transition: color 0.1s;
+    }
+    .img-chip-x:hover { color: var(--red); }
+
+    .upload-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--surface2);
+      border: 1px dashed var(--border);
+      color: var(--muted);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius);
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      user-select: none;
+    }
+    .upload-label:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Body editor ── */
+    .body-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      border-radius: var(--radius) var(--radius) 0 0;
+      padding: 0.3rem 0.65rem;
+    }
+
+    .tab-group { display: flex; gap: 0.15rem; }
+
+    .tab-btn {
+      background: none; border: none;
+      color: var(--muted);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+    }
+    .tab-btn:hover { background: var(--border); color: var(--text); }
+    .tab-btn.active { background: var(--border); color: var(--text); }
+
+    .word-count { font-size: 0.72rem; color: var(--muted); }
+
+    #body-ta {
+      border-radius: 0 0 var(--radius) var(--radius);
+      min-height: 420px;
+      font-family: var(--font-mono);
+      font-size: 0.83rem;
+      line-height: 1.65;
+    }
+
+    #body-preview {
+      display: none;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 0 0 var(--radius) var(--radius);
+      padding: 1.1rem;
+      min-height: 420px;
+    }
+
+    /* rendered markdown inside preview divs */
+    .md-body h1, .md-body h2, .md-body h3 { margin: 1.5rem 0 0.6rem; font-weight: 600; }
+    .md-body p { margin-bottom: 1rem; }
+    .md-body ul, .md-body ol { margin: 0.5rem 0 1rem 1.5rem; }
+    .md-body li { margin-bottom: 0.25rem; }
+    .md-body code {
+      font-family: var(--font-mono); font-size: 0.875em;
+      background: var(--border); padding: 0.15em 0.4em; border-radius: 3px;
+    }
+    .md-body pre {
+      background: #111; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem; overflow-x: auto; margin-bottom: 1rem;
+    }
+    .md-body pre code { background: none; padding: 0; }
+    .md-body strong { font-weight: 600; color: #fff; }
+    .md-body a { color: var(--accent); text-decoration: none; }
+    .md-body a:hover { text-decoration: underline; }
+    .md-body blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem; color: var(--muted); margin: 1rem 0;
+    }
+
+    /* ── Context (collapsible) ── */
+    .collapsible-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.4rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .collapsible-header:hover .sec-label { color: var(--text); }
+
+    .chevron {
+      font-size: 0.65rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+    }
+    .collapsible.open .chevron { transform: rotate(90deg); }
+
+    .collapsible-body {
+      display: none;
+      padding-top: 0.65rem;
+    }
+    .collapsible.open .collapsible-body { display: block; }
+
+    .ctx-file-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .ctx-file-label { font-size: 0.74rem; color: var(--muted); }
+
+    /* ── Action bar ── */
+    .action-bar {
+      flex-shrink: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+      display: none;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .action-bar.show { display: flex; }
+    .action-spacer { flex: 1; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: var(--radius);
+      font-size: 0.78rem; font-weight: 500; font-family: var(--font);
+      cursor: pointer; border: 1px solid transparent;
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-ghost {
+      background: none; border-color: var(--border); color: var(--muted);
+    }
+    .btn-ghost:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+
+    .btn-secondary {
+      background: var(--surface2); border-color: var(--border); color: var(--text);
+    }
+    .btn-secondary:hover:not(:disabled) { border-color: var(--accent); }
+
+    .btn-accent {
+      background: var(--accent); color: #fff;
+    }
+    .btn-accent:hover:not(:disabled) { background: var(--accent-dk); }
+
+    .btn-danger {
+      background: color-mix(in srgb, var(--red) 15%, transparent);
+      border-color: color-mix(in srgb, var(--red) 35%, transparent);
+      color: var(--red);
+    }
+    .btn-danger:hover:not(:disabled) {
+      background: color-mix(in srgb, var(--red) 25%, transparent);
+    }
+
+    /* ── Modals ── */
+    .modal {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      align-items: center; justify-content: center;
+    }
+    .modal.open { display: flex; }
+
+    .modal-bg {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-box {
+      position: relative; z-index: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: min(520px, calc(100vw - 2rem));
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      padding: 1.4rem;
+    }
+    .modal-box.wide { width: min(720px, calc(100vw - 2rem)); }
+
+    .modal-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+    .modal-title { font-size: 0.95rem; font-weight: 600; }
+    .modal-close {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); width: 1.7rem; height: 1.7rem;
+      border-radius: 50%; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .modal-close:hover { background: var(--border); color: var(--text); }
+
+    .modal-field { margin-bottom: 0.9rem; }
+    .modal-field label { display: block; font-size: 0.74rem; color: var(--muted); margin-bottom: 0.3rem; }
+
+    .modal-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+    .modal-footer {
+      display: flex; justify-content: flex-end; gap: 0.45rem;
+      margin-top: 1.1rem; padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Generate result */
+    .gen-result { display: none; margin-top: 0.9rem; }
+    .gen-result-note {
+      font-size: 0.74rem; color: var(--yellow);
+      background: color-mix(in srgb, var(--yellow) 8%, transparent);
+      border: 1px solid color-mix(in srgb, var(--yellow) 20%, transparent);
+      border-radius: var(--radius); padding: 0.4rem 0.7rem;
+      margin-bottom: 0.6rem;
+    }
+    .gen-result textarea { font-family: var(--font-mono); font-size: 0.78rem; height: 180px; }
+
+    /* Delete warning */
+    .delete-warn {
+      font-size: 0.83rem;
+      color: var(--red);
+      background: color-mix(in srgb, var(--red) 8%, transparent);
+      border: 1px solid color-mix(in srgb, var(--red) 20%, transparent);
+      border-radius: var(--radius);
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .delete-name {
+      font-size: 0.85rem; font-weight: 500; margin-bottom: 0.75rem;
+    }
+
+    /* ── Toasts ── */
+    #toasts {
+      position: fixed; bottom: 1.25rem; right: 1.25rem;
+      z-index: 400;
+      display: flex; flex-direction: column; gap: 0.45rem; align-items: flex-end;
+    }
+
+    .toast {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.55rem 0.9rem;
+      font-size: 0.8rem;
+      max-width: 310px;
+      display: flex; align-items: center; gap: 0.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      animation: toast-in 0.18s ease;
+    }
+    .toast.success { border-color: color-mix(in srgb, var(--green) 40%, transparent); }
+    .toast.error   { border-color: color-mix(in srgb, var(--red) 40%, transparent); }
+    .toast.info    { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+
+    .toast-ico { font-size: 0.85rem; flex-shrink: 0; }
+    .toast.success .toast-ico { color: var(--green); }
+    .toast.error   .toast-ico { color: var(--red); }
+    .toast.info    .toast-ico { color: var(--accent); }
+
+    .toast-msg { flex: 1; }
+
+    .toast-undo {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.73rem;
+      font-family: var(--font);
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.1s;
+    }
+    .toast-undo:hover { background: var(--surface2); }
+
+    @keyframes toast-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Spinner ── */
+    .spin {
+      width: 13px; height: 13px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: rotate 0.55s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
+
+    /* ── Tag palette ── */
+    .tag-palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .palette-chip {
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .palette-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .palette-chip.used {
+      opacity: 0.35;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* ── Branch checkboxes ── */
+    .branch-checks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .branch-check-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.2rem 0.65rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+    .branch-check-label:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .branch-check-label input[type="checkbox"] {
+      display: none;
+    }
+    .branch-check-label:has(input:checked) {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .branch-custom-wrap {
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
-<body class="admin-body">
+<body>
 
-  <header class="site-header">
-    <div class="header-inner">
+<div class="layout">
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Admin</span>
       <a href="index.html" class="back-link">← Portfolio</a>
-      <h1>New Story</h1>
     </div>
-  </header>
 
-  <main class="admin-main">
+    <div class="sidebar-top">
+      <button class="btn-new" id="new-btn">＋ New Post</button>
+      <input type="text" class="search-input" id="search" placeholder="Search posts…">
+    </div>
 
-    <div class="admin-pane form-pane">
-      <form id="post-form" novalidate>
+    <div class="post-list" id="post-list">
+      <p class="list-empty">Loading…</p>
+    </div>
+  </aside>
 
-        <div class="field">
-          <label for="title">Title <span class="req">*</span></label>
-          <input type="text" id="title" placeholder="What did you build?" required />
-        </div>
+  <!-- ── Main panel ──────────────────────────────────────── -->
+  <div class="main-panel">
+    <div class="editor-scroll" id="editor-scroll">
 
-        <div class="field">
-          <label for="summary">Summary <span class="req">*</span></label>
-          <input type="text" id="summary" placeholder="One or two sentences shown on the card." required />
-        </div>
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state">
+        <span class="icon">✏️</span>
+        <p>Select a post or create a new one</p>
+      </div>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="branch">Company / Branch <span class="req">*</span></label>
-            <input type="text" id="branch" placeholder="e.g. Acme Corp" required />
+      <!-- Editor form -->
+      <form class="editor-form" id="editor-form" novalidate>
+
+        <!-- Metadata -->
+        <div class="section">
+          <div class="sec-label">Metadata</div>
+          <div class="meta-row">
+            <div class="field">
+              <label class="field-label" for="f-title">Title</label>
+              <input type="text" id="f-title" placeholder="Post title…">
+            </div>
+            <div class="field">
+              <label class="field-label">Branch / Company</label>
+              <div class="branch-checks" id="branch-checks"></div>
+              <div class="branch-custom-wrap">
+                <input type="text" id="f-branch-custom" placeholder="Other / Custom branch…">
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="f-date">Date</label>
+              <input type="date" id="f-date">
+            </div>
           </div>
-          <div class="field">
-            <label for="date">Date</label>
-            <input type="date" id="date" />
+        </div>
+
+        <!-- Summary -->
+        <div class="section">
+          <div class="sec-label">Summary</div>
+          <textarea id="f-summary" rows="2" placeholder="One or two sentence hook shown on the card…"></textarea>
+        </div>
+
+        <!-- Tags -->
+        <div class="section">
+          <div class="sec-label">Tags</div>
+          <input type="text" id="f-tags" list="tags-datalist" placeholder="React, Node.js, PostgreSQL — comma separated" autocomplete="off">
+          <datalist id="tags-datalist"></datalist>
+          <div class="tag-chips" id="tag-chips"></div>
+          <div class="tag-palette" id="tag-palette"></div>
+        </div>
+
+        <!-- Images -->
+        <div class="section">
+          <div class="sec-label">Images</div>
+          <div class="images-row" id="images-row"></div>
+          <label class="upload-label" for="img-upload">＋ Upload image</label>
+          <input type="file" id="img-upload" accept="image/*" multiple>
+        </div>
+
+        <!-- Body -->
+        <div class="section">
+          <div class="sec-label">Body</div>
+          <div class="body-toolbar">
+            <div class="tab-group">
+              <button type="button" class="tab-btn active" data-tab="write" id="tab-write">Write</button>
+              <button type="button" class="tab-btn" data-tab="preview" id="tab-preview">Preview</button>
+            </div>
+            <span class="word-count" id="word-count">0 words</span>
           </div>
+          <textarea id="body-ta" rows="22" placeholder="Write your story in markdown…"></textarea>
+          <div id="body-preview" class="md-body"></div>
         </div>
 
-        <div class="field">
-          <label for="tags">Tags <span class="hint">(comma-separated)</span></label>
-          <input type="text" id="tags" placeholder="React, Node.js, PostgreSQL" />
-        </div>
-
-        <div class="field">
-          <label for="images">Images <span class="hint">(optional)</span></label>
-          <input type="file" id="images" accept="image/*" multiple />
-          <div id="image-previews" class="image-previews"></div>
-          <p id="image-note" class="field-note" style="display:none"></p>
-        </div>
-
-        <div class="field">
-          <label for="body">Story Body <span class="hint">(markdown)</span></label>
-          <textarea id="body" rows="20" placeholder="Write your story here using markdown…"></textarea>
-        </div>
-
-        <div class="form-actions">
-          <button type="button" id="download-btn" class="btn-primary">
-            Download .md file
-          </button>
-          <button type="button" id="download-images-btn" class="btn-secondary" style="display:none">
-            Download images
-          </button>
-        </div>
-
-        <div id="download-note" class="download-note" style="display:none">
-          <strong>Next steps:</strong>
-          <ol>
-            <li>Move the <code>.md</code> file to <code>content/</code></li>
-            <li>Move any images to <code>site/images/</code></li>
-            <li>Run <code>python scripts/build_site.py</code> to update the site</li>
-          </ol>
+        <!-- Context (collapsible) -->
+        <div class="section collapsible" id="ctx-section">
+          <div class="collapsible-header" id="ctx-toggle">
+            <span class="sec-label" style="margin:0">Context</span>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="collapsible-body">
+            <textarea id="f-ctx" rows="5"
+              placeholder="Paste additional context here — used when generating from PDFs and when enhancing with AI…"></textarea>
+            <div class="ctx-file-row">
+              <label class="upload-label" for="ctx-upload">＋ Upload .txt or PDF</label>
+              <input type="file" id="ctx-upload" accept=".txt,.pdf">
+              <span class="ctx-file-label" id="ctx-file-label"></span>
+            </div>
+          </div>
         </div>
 
       </form>
     </div>
 
-    <div class="admin-pane preview-pane">
-      <div class="preview-header">
-        <span class="preview-label">Preview</span>
-        <span id="preview-slug" class="preview-slug"></span>
+    <!-- Action bar -->
+    <div class="action-bar" id="action-bar">
+      <button class="btn btn-ghost" id="btn-gen">⚙ Generate from PDFs</button>
+      <button class="btn btn-ghost" id="btn-enhance">✨ Enhance with AI</button>
+      <button class="btn btn-ghost" id="btn-preview">👁 Preview</button>
+      <div class="action-spacer"></div>
+      <button class="btn btn-secondary" id="btn-save">Save Draft</button>
+      <button class="btn btn-accent" id="btn-publish">Publish</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Generate modal ──────────────────────────────────── -->
+<div class="modal" id="gen-modal">
+  <div class="modal-bg" onclick="closeModal('gen-modal')"></div>
+  <div class="modal-box">
+    <div class="modal-hd">
+      <span class="modal-title">Generate from PDFs</span>
+      <button class="modal-close" onclick="closeModal('gen-modal')">&times;</button>
+    </div>
+
+    <div class="modal-field">
+      <label>Primary PDF</label>
+      <select id="gen-pdf-sel"></select>
+    </div>
+
+    <div class="modal-grid2">
+      <div class="modal-field">
+        <label>Pages (e.g. 5-6 or 5,6,7)</label>
+        <input type="text" id="gen-pages" placeholder="e.g. 5-6">
       </div>
-      <div id="preview" class="preview-body">
-        <p class="empty">Start writing to see a preview…</p>
+      <div class="modal-field">
+        <label>Skip first N pages</label>
+        <input type="text" id="gen-skip" placeholder="0">
       </div>
     </div>
 
-  </main>
+    <details id="gen-secondary" style="margin-bottom:0.9rem">
+      <summary style="font-size:0.78rem;color:var(--muted);cursor:pointer;user-select:none;padding:0.4rem 0;list-style:none;display:flex;align-items:center;gap:0.4rem">
+        <span id="gen-secondary-arrow" style="font-size:0.6rem;transition:transform 0.2s">▶</span>
+        Secondary PDF <span style="opacity:0.5">(optional)</span>
+      </summary>
+      <div style="padding-top:0.6rem">
+        <div class="modal-field">
+          <label>Secondary PDF</label>
+          <select id="gen-pdf-sel2">
+            <option value="">— None —</option>
+          </select>
+        </div>
+        <div class="modal-grid2">
+          <div class="modal-field">
+            <label>Pages</label>
+            <input type="text" id="gen-pages2" placeholder="e.g. 1-3">
+          </div>
+          <div class="modal-field">
+            <label>Skip first N pages</label>
+            <input type="text" id="gen-skip2" placeholder="0">
+          </div>
+        </div>
+      </div>
+    </details>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="js/admin.js"></script>
+    <div class="modal-field">
+      <label>Min image score</label>
+      <input type="text" id="gen-score" value="2.0">
+    </div>
+
+    <div class="modal-field">
+      <label>Additional context (optional)</label>
+      <textarea id="gen-ctx" rows="3" placeholder="Extra context for this generation…"></textarea>
+    </div>
+
+    <div class="gen-result" id="gen-result">
+      <div class="gen-result-note">
+        ⚠ This is the Claude prompt — review it in the body editor, then use Enhance with AI or paste it into Claude.
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('gen-modal')">Cancel</button>
+      <button class="btn btn-accent" id="gen-run-btn" onclick="runGenerate()">Generate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Delete confirm modal ────────────────────────────── -->
+<div class="modal" id="del-modal">
+  <div class="modal-bg" onclick="closeModal('del-modal')"></div>
+  <div class="modal-box">
+    <div class="modal-hd">
+      <span class="modal-title">Delete Post</span>
+      <button class="modal-close" onclick="closeModal('del-modal')">&times;</button>
+    </div>
+    <div class="delete-warn">
+      This will permanently remove the post from <code>content/</code> and <code>docs/content/</code>. This cannot be undone.
+    </div>
+    <div class="delete-name" id="del-name"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('del-modal')">Cancel</button>
+      <button class="btn btn-danger" id="del-confirm-btn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Preview modal ───────────────────────────────────── -->
+<div class="modal" id="preview-modal">
+  <div class="modal-bg" onclick="closeModal('preview-modal')"></div>
+  <div class="modal-box wide">
+    <div class="modal-hd">
+      <span class="modal-title" id="preview-modal-title">Preview</span>
+      <button class="modal-close" onclick="closeModal('preview-modal')">&times;</button>
+    </div>
+    <div class="md-body" id="preview-modal-body" style="padding-top:0.5rem"></div>
+  </div>
+</div>
+
+<!-- ── Toast container ─────────────────────────────────── -->
+<div id="toasts"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+'use strict';
+
+const API = 'http://localhost:5000';
+
+// ── State ──────────────────────────────────────────────────────────────────
+let posts        = [];
+let currentSlug  = null;
+let isDirty      = false;
+let currentImgs  = [];
+let prevBody     = null;
+let pendingDel   = null;
+let pdfsCache    = null;
+let allBranches  = [];
+let allTags      = [];
+
+const DEFAULT_BRANCHES = ['Archetype Foundry', 'Fab Lab Bahrain'];
+
+// ── Init ───────────────────────────────────────────────────────────────────
+async function init() {
+  bindEvents();
+  await Promise.all([loadPosts(), loadBranches()]);
+  if (posts.length) selectPost(posts[0].slug);
+}
+
+function bindEvents() {
+  document.getElementById('new-btn').addEventListener('click', newPost);
+  document.getElementById('search').addEventListener('input', filterList);
+
+  const dirty = () => markDirty();
+  ['f-title','f-date','f-summary','f-branch-custom'].forEach(id =>
+    document.getElementById(id).addEventListener('input', dirty));
+  document.getElementById('branch-checks').addEventListener('change', dirty);
+
+  document.getElementById('f-tags').addEventListener('input', () => { markDirty(); renderChips(); });
+  document.getElementById('body-ta').addEventListener('input', () => { markDirty(); updateWordCount(); });
+
+  document.getElementById('tab-write').addEventListener('click', () => switchTab('write'));
+  document.getElementById('tab-preview').addEventListener('click', () => switchTab('preview'));
+  document.getElementById('ctx-toggle').addEventListener('click', toggleCtx);
+
+  document.getElementById('img-upload').addEventListener('change', handleImgUpload);
+  document.getElementById('ctx-upload').addEventListener('change', handleCtxUpload);
+
+  document.getElementById('btn-gen').addEventListener('click', openGenModal);
+  document.getElementById('btn-enhance').addEventListener('click', enhanceWithAI);
+  document.getElementById('btn-preview').addEventListener('click', openPreviewModal);
+  document.getElementById('btn-save').addEventListener('click', saveDraft);
+  document.getElementById('btn-publish').addEventListener('click', publish);
+
+  document.getElementById('del-confirm-btn').addEventListener('click', confirmDelete);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape')
+      document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
+  });
+
+  window.addEventListener('beforeunload', e => {
+    if (isDirty) { e.preventDefault(); e.returnValue = ''; }
+  });
+}
+
+// ── Posts list ─────────────────────────────────────────────────────────────
+async function loadPosts() {
+  try {
+    const r = await fetch(`${API}/api/posts`);
+    if (!r.ok) throw new Error();
+    posts = await r.json();
+    renderList(posts);
+  } catch {
+    document.getElementById('post-list').innerHTML =
+      `<p class="list-empty">Cannot reach server.<br>Run <code>python scripts/server.py</code></p>`;
+  }
+}
+
+function renderList(list) {
+  const el = document.getElementById('post-list');
+  if (!list.length) {
+    el.innerHTML = '<p class="list-empty">No posts yet.</p>';
+    return;
+  }
+  el.innerHTML = '';
+  list.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'post-item' + (p.slug === currentSlug ? ' active' : '');
+    item.dataset.slug = p.slug;
+    item.innerHTML = `
+      <div class="post-item-title">${esc(p.title || p.slug)}</div>
+      <div class="post-item-branch">${esc(p.branch || '—')}</div>
+      <button class="post-item-del" data-slug="${esc(p.slug)}" title="Delete">✕</button>`;
+
+    item.addEventListener('click', e => {
+      const delBtn = e.target.closest('.post-item-del');
+      if (delBtn) { openDelModal(delBtn.dataset.slug, p.title || p.slug); return; }
+      if (isDirty && !confirm('Unsaved changes — discard and switch?')) return;
+      selectPost(p.slug);
+    });
+    el.appendChild(item);
+  });
+}
+
+function filterList() {
+  const q = document.getElementById('search').value.toLowerCase();
+  renderList(posts.filter(p =>
+    (p.title || '').toLowerCase().includes(q) ||
+    (p.branch || '').toLowerCase().includes(q)
+  ));
+}
+
+function setActiveItem(slug) {
+  document.querySelectorAll('.post-item').forEach(el =>
+    el.classList.toggle('active', el.dataset.slug === slug));
+}
+
+// ── Select / New ───────────────────────────────────────────────────────────
+async function selectPost(slug) {
+  try {
+    const r = await fetch(`${API}/api/posts/${slug}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const post = await r.json();
+    currentSlug = slug;
+    isDirty = false;
+    populate(post);
+    showEditor();
+    setActiveItem(slug);
+    setTitle();
+  } catch (e) {
+    toast('Failed to load post: ' + e.message, 'error');
+  }
+}
+
+function newPost() {
+  if (isDirty && !confirm('Unsaved changes — discard?')) return;
+  currentSlug = null;
+  isDirty = false;
+  populate({ title:'', branch:'', date: today(), summary:'', tags:[], images:[], body:'' });
+  showEditor();
+  setActiveItem(null);
+  setTitle();
+  document.getElementById('f-title').focus();
+}
+
+function populate(post) {
+  document.getElementById('f-title').value   = post.title   || '';
+  document.getElementById('f-date').value    = post.date    || today();
+  setBranchValue(post.branch || '');
+  document.getElementById('f-summary').value = post.summary || '';
+  document.getElementById('f-tags').value    = (post.tags || []).join(', ');
+  document.getElementById('body-ta').value   = post.body    || '';
+  document.getElementById('f-ctx').value     = '';
+  document.getElementById('ctx-file-label').textContent = '';
+
+  currentImgs = [...(post.images || [])];
+  renderImgs();
+  renderChips();
+  updateWordCount();
+  switchTab('write');
+}
+
+function showEditor() {
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('editor-form').classList.add('show');
+  document.getElementById('action-bar').classList.add('show');
+}
+
+// ── Dirty state ────────────────────────────────────────────────────────────
+function markDirty() {
+  isDirty = true;
+  setTitle();
+  const item = document.querySelector(`.post-item[data-slug="${currentSlug}"]`);
+  if (item) item.classList.add('dirty');
+}
+
+function setTitle() {
+  document.title = (isDirty ? '• ' : '') + 'Admin — Portfolio';
+}
+
+// ── Tags ───────────────────────────────────────────────────────────────────
+function renderChips() {
+  const tags = parseTags();
+  const el = document.getElementById('tag-chips');
+  el.innerHTML = '';
+  tags.forEach(t => {
+    const chip = document.createElement('span');
+    chip.className = 'chip';
+    chip.innerHTML = `${esc(t)}<button type="button" class="chip-x" data-t="${esc(t)}">×</button>`;
+    chip.querySelector('.chip-x').addEventListener('click', () => {
+      const current = parseTags().filter(x => x !== t);
+      document.getElementById('f-tags').value = current.join(', ');
+      renderChips();
+      markDirty();
+    });
+    el.appendChild(chip);
+  });
+  renderTagPalette();
+}
+
+function parseTags() {
+  return document.getElementById('f-tags').value
+    .split(',').map(s => s.trim()).filter(Boolean);
+}
+
+function renderTagPalette() {
+  const el = document.getElementById('tag-palette');
+  if (!allTags.length) { el.innerHTML = ''; return; }
+  const current = new Set(parseTags().map(t => t.toLowerCase()));
+  el.innerHTML = '';
+  allTags.forEach(t => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'palette-chip' + (current.has(t.toLowerCase()) ? ' used' : '');
+    chip.textContent = t;
+    chip.title = current.has(t.toLowerCase()) ? 'Already added' : `Add "${t}"`;
+    chip.addEventListener('click', () => {
+      if (current.has(t.toLowerCase())) return;
+      const existing = parseTags();
+      existing.push(t);
+      document.getElementById('f-tags').value = existing.join(', ');
+      renderChips();
+      markDirty();
+    });
+    el.appendChild(chip);
+  });
+}
+
+function populateTagsDatalist() {
+  const dl = document.getElementById('tags-datalist');
+  dl.innerHTML = '';
+  allTags.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t;
+    dl.appendChild(opt);
+  });
+}
+
+// ── Images ─────────────────────────────────────────────────────────────────
+function renderImgs() {
+  const el = document.getElementById('images-row');
+  el.innerHTML = '';
+  currentImgs.forEach(img => {
+    const chip = document.createElement('div');
+    chip.className = 'img-chip';
+    chip.innerHTML = `
+      <img src="/images/${esc(img)}" alt="" onerror="this.style.display='none'">
+      <span>${esc(img)}</span>
+      <button type="button" class="img-chip-x" data-img="${esc(img)}">✕</button>`;
+    chip.querySelector('.img-chip-x').addEventListener('click', () => {
+      currentImgs = currentImgs.filter(i => i !== img);
+      renderImgs();
+      markDirty();
+    });
+    el.appendChild(chip);
+  });
+}
+
+// ── Body tab ───────────────────────────────────────────────────────────────
+function switchTab(tab) {
+  const ta  = document.getElementById('body-ta');
+  const pre = document.getElementById('body-preview');
+  document.getElementById('tab-write').classList.toggle('active', tab === 'write');
+  document.getElementById('tab-preview').classList.toggle('active', tab === 'preview');
+  if (tab === 'preview') {
+    pre.style.display = 'block';
+    ta.style.display  = 'none';
+    pre.innerHTML = marked.parse(ta.value || '*No content yet*');
+  } else {
+    ta.style.display  = 'block';
+    pre.style.display = 'none';
+    ta.focus();
+  }
+}
+
+function updateWordCount() {
+  const t = document.getElementById('body-ta').value.trim();
+  const n = t ? t.split(/\s+/).length : 0;
+  document.getElementById('word-count').textContent = `${n} word${n !== 1 ? 's' : ''}`;
+}
+
+// ── Context collapsible ────────────────────────────────────────────────────
+function toggleCtx() {
+  document.getElementById('ctx-section').classList.toggle('open');
+}
+
+// ── Branch checkboxes ──────────────────────────────────────────────────────
+async function loadBranches() {
+  try {
+    const r = await fetch(`${API}/api/tags`);
+    if (!r.ok) return;
+    const d = await r.json();
+    allBranches = d.branches || [];
+    allTags     = d.tags     || [];
+  } catch { /* server down — defaults still render */ }
+  renderBranchChecks();
+  renderTagPalette();
+  populateTagsDatalist();
+}
+
+function renderBranchChecks() {
+  const branches = [...new Set([...DEFAULT_BRANCHES, ...allBranches])];
+  const el = document.getElementById('branch-checks');
+
+  // Preserve any boxes already checked before re-render
+  const checked = new Set(
+    [...el.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value)
+  );
+
+  el.innerHTML = '';
+  branches.forEach(b => {
+    const label = document.createElement('label');
+    label.className = 'branch-check-label';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = b;
+    cb.checked = checked.has(b);
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(b));
+    el.appendChild(label);
+  });
+}
+
+function setBranchValue(branch) {
+  // Clear everything first
+  document.querySelectorAll('#branch-checks input[type="checkbox"]').forEach(cb => {
+    cb.checked = false;
+  });
+  document.getElementById('f-branch-custom').value = '';
+
+  if (!branch) return;
+
+  // Try to match all parts against rendered checkboxes
+  const parts = branch.split(' & ').map(s => s.trim()).filter(Boolean);
+  const knownValues = new Set(
+    [...document.querySelectorAll('#branch-checks input[type="checkbox"]')].map(cb => cb.value)
+  );
+  const allKnown = parts.length > 0 && parts.every(p => knownValues.has(p));
+
+  if (allKnown) {
+    document.querySelectorAll('#branch-checks input[type="checkbox"]').forEach(cb => {
+      cb.checked = parts.includes(cb.value);
+    });
+  } else {
+    document.getElementById('f-branch-custom').value = branch;
+  }
+}
+
+function getBranchValue() {
+  const custom = document.getElementById('f-branch-custom').value.trim();
+  if (custom) return custom;
+  return [...document.querySelectorAll('#branch-checks input[type="checkbox"]:checked')]
+    .map(cb => cb.value)
+    .join(' & ');
+}
+
+// ── Build markdown ─────────────────────────────────────────────────────────
+function buildMarkdown() {
+  const title   = document.getElementById('f-title').value.trim();
+  const branch  = getBranchValue();
+  const date    = document.getElementById('f-date').value || today();
+  const summary = document.getElementById('f-summary').value.trim();
+  const tags    = parseTags();
+  const body    = document.getElementById('body-ta').value;
+
+  const q = s => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+  let fm = '---\n';
+  fm += `title: "${q(title)}"\n`;
+  fm += `date: ${date}\n`;
+  fm += `branch: "${q(branch)}"\n`;
+  fm += `summary: "${q(summary)}"\n`;
+  if (tags.length)       { fm += 'tags:\n';   tags.forEach(t => fm += `  - ${t}\n`); }
+  if (currentImgs.length){ fm += 'images:\n'; currentImgs.forEach(i => fm += `  - ${i}\n`); }
+  fm += '---\n\n';
+  return fm + body;
+}
+
+function getOrCreateSlug() {
+  if (currentSlug) return currentSlug;
+  const t = document.getElementById('f-title').value.trim();
+  return t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || null;
+}
+
+// ── Save / Publish ─────────────────────────────────────────────────────────
+async function saveDraft() {
+  const slug = getOrCreateSlug();
+  if (!slug) { toast('Enter a title first', 'error'); return; }
+
+  const content = buildMarkdown();
+  try {
+    const r = await fetch(`${API}/api/posts/${slug}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content }),
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Save failed');
+
+    const wasNew = !posts.find(p => p.slug === slug);
+    currentSlug = slug;
+    isDirty = false;
+    setTitle();
+    await loadPosts();
+    setActiveItem(slug);
+    toast(wasNew ? 'Post created' : 'Draft saved', 'success');
+  } catch (e) { toast(e.message, 'error'); }
+}
+
+async function publish() {
+  await saveDraft();
+  if (isDirty) return; // save failed
+
+  try {
+    const r = await fetch(`${API}/api/publish`, { method: 'POST' });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Publish failed');
+    toast('Published to docs/', 'success');
+  } catch (e) { toast(e.message, 'error'); }
+}
+
+// ── Delete ─────────────────────────────────────────────────────────────────
+function openDelModal(slug, title) {
+  pendingDel = slug;
+  document.getElementById('del-name').textContent = `"${title}"`;
+  openModal('del-modal');
+}
+
+async function confirmDelete() {
+  if (!pendingDel) return;
+  closeModal('del-modal');
+  try {
+    const r = await fetch(`${API}/api/posts/${pendingDel}`, { method: 'DELETE' });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Delete failed');
+
+    if (currentSlug === pendingDel) {
+      currentSlug = null;
+      isDirty = false;
+      document.getElementById('editor-form').classList.remove('show');
+      document.getElementById('action-bar').classList.remove('show');
+      document.getElementById('empty-state').style.display = 'flex';
+      setTitle();
+    }
+
+    toast('Post deleted', 'success');
+    pendingDel = null;
+    await loadPosts();
+    if (!currentSlug && posts.length) selectPost(posts[0].slug);
+  } catch (e) { toast(e.message, 'error'); }
+}
+
+// ── Generate from PDFs ─────────────────────────────────────────────────────
+async function openGenModal() {
+  if (!pdfsCache) {
+    try {
+      const r = await fetch(`${API}/api/pdfs`);
+      pdfsCache = await r.json();
+    } catch { pdfsCache = []; }
+  }
+
+  const company = (pdfsCache || []).filter(p => !p.toLowerCase().includes('resume'));
+
+  const sel = document.getElementById('gen-pdf-sel');
+  sel.innerHTML = '';
+  if (!company.length) {
+    sel.innerHTML = '<option disabled>No PDFs found in data/</option>';
+  } else {
+    company.forEach(p => {
+      const o = document.createElement('option');
+      o.value = p; o.textContent = p; sel.appendChild(o);
+    });
+  }
+
+  const sel2 = document.getElementById('gen-pdf-sel2');
+  sel2.innerHTML = '<option value="">— None —</option>';
+  company.forEach(p => {
+    const o = document.createElement('option');
+    o.value = p; o.textContent = p; sel2.appendChild(o);
+  });
+
+  // Rotate arrow on details toggle
+  const details = document.getElementById('gen-secondary');
+  const arrow   = document.getElementById('gen-secondary-arrow');
+  details.ontoggle = () => { arrow.style.transform = details.open ? 'rotate(90deg)' : ''; };
+
+  document.getElementById('gen-ctx').value = document.getElementById('f-ctx').value;
+  document.getElementById('gen-result').style.display = 'none';
+  openModal('gen-modal');
+}
+
+async function runGenerate() {
+  const title  = document.getElementById('f-title').value.trim();
+  const branch = getBranchValue();
+  const pdf    = document.getElementById('gen-pdf-sel').value;
+
+  if (!title)  { toast('Enter a post title first', 'error'); return; }
+  if (!branch) { toast('Select a branch or enter a custom one first', 'error'); return; }
+  if (!pdf)    { toast('Select a company PDF', 'error'); return; }
+
+  const btn = document.getElementById('gen-run-btn');
+  setLoading(btn, true, 'Generating…');
+
+  try {
+    const r = await fetch(`${API}/api/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify((() => {
+        const payload = {
+          title, branch, company: pdf,
+          pages:      document.getElementById('gen-pages').value.trim() || undefined,
+          skip_pages: parseInt(document.getElementById('gen-skip').value) || 0,
+          min_score:  parseFloat(document.getElementById('gen-score').value) || 2.0,
+          context:    document.getElementById('gen-ctx').value.trim(),
+        };
+        const pdf2 = document.getElementById('gen-pdf-sel2').value;
+        if (pdf2) {
+          payload.company2    = pdf2;
+          const p2 = document.getElementById('gen-pages2').value.trim();
+          const s2 = parseInt(document.getElementById('gen-skip2').value) || 0;
+          if (p2) payload.pages2      = p2;
+          if (s2) payload.skip_pages2 = s2;
+        }
+        return payload;
+      })()),
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Generation failed');
+
+    document.getElementById('body-ta').value = d.prompt || '';
+    updateWordCount();
+    markDirty();
+    switchTab('write');
+    closeModal('gen-modal');
+    toast('Prompt generated — review in body editor', 'info');
+  } catch (e) {
+    toast(e.message, 'error');
+  } finally {
+    setLoading(btn, false, 'Generate');
+  }
+}
+
+// ── Enhance with AI ────────────────────────────────────────────────────────
+async function enhanceWithAI() {
+  const body = document.getElementById('body-ta').value.trim();
+  if (!body) { toast('Body is empty', 'error'); return; }
+
+  const btn = document.getElementById('btn-enhance');
+  setLoading(btn, true, 'Enhancing…');
+
+  try {
+    const r = await fetch(`${API}/api/enhance`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text:    body,
+        context: document.getElementById('f-ctx').value.trim(),
+      }),
+    });
+    const d = await r.json();
+
+    if (r.status === 503) {
+      toast(d.warning || 'ANTHROPIC_API_KEY not set', 'error');
+      return;
+    }
+    if (!r.ok) throw new Error(d.error || 'Enhancement failed');
+
+    prevBody = body;
+    document.getElementById('body-ta').value = d.enhanced || '';
+    updateWordCount();
+    markDirty();
+    toast('Text enhanced — review changes before saving', 'info', () => {
+      document.getElementById('body-ta').value = prevBody;
+      updateWordCount();
+      markDirty();
+      prevBody = null;
+    });
+  } catch (e) {
+    toast(e.message, 'error');
+  } finally {
+    setLoading(btn, false, '✨ Enhance with AI');
+  }
+}
+
+// ── Preview modal ──────────────────────────────────────────────────────────
+function openPreviewModal() {
+  const title = document.getElementById('f-title').value || 'Preview';
+  const body  = document.getElementById('body-ta').value;
+  document.getElementById('preview-modal-title').textContent = title;
+  document.getElementById('preview-modal-body').innerHTML = marked.parse(body || '*No content yet*');
+  openModal('preview-modal');
+}
+
+// ── Uploads ────────────────────────────────────────────────────────────────
+async function handleImgUpload(e) {
+  const files = Array.from(e.target.files);
+  for (const file of files) {
+    const fd = new FormData();
+    fd.append('file', file);
+    try {
+      const r = await fetch(`${API}/api/upload/image`, { method: 'POST', body: fd });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.error);
+      if (!currentImgs.includes(d.filename)) currentImgs.push(d.filename);
+      toast(`Uploaded ${d.filename}`, 'success');
+    } catch (err) { toast(err.message, 'error'); }
+  }
+  renderImgs();
+  markDirty();
+  e.target.value = '';
+}
+
+async function handleCtxUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const fd = new FormData();
+  fd.append('file', file);
+  try {
+    const r = await fetch(`${API}/api/upload/context`, { method: 'POST', body: fd });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error);
+    document.getElementById('ctx-file-label').textContent = `Saved → ${d.path}`;
+    toast(`Context file saved to ${d.path}`, 'success');
+  } catch (err) { toast(err.message, 'error'); }
+  e.target.value = '';
+}
+
+// ── Modals ─────────────────────────────────────────────────────────────────
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ── Toasts ─────────────────────────────────────────────────────────────────
+function toast(msg, type = 'info', undoFn = null) {
+  const icons = { success: '✓', error: '✕', info: 'ℹ' };
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.innerHTML = `<span class="toast-ico">${icons[type]}</span><span class="toast-msg">${esc(msg)}</span>`;
+
+  if (undoFn) {
+    const u = document.createElement('button');
+    u.className = 'toast-undo';
+    u.textContent = 'Undo';
+    u.addEventListener('click', () => { undoFn(); el.remove(); });
+    el.appendChild(u);
+  }
+
+  document.getElementById('toasts').appendChild(el);
+  setTimeout(() => el.remove(), undoFn ? 7000 : 3000);
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function setLoading(btn, loading, label) {
+  btn.disabled = loading;
+  btn.innerHTML = loading
+    ? `<span class="spin"></span> ${esc(label)}`
+    : label;
+}
+
+function today() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+init();
+</script>
 </body>
 </html>
