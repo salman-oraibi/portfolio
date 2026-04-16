@@ -22,3 +22,5 @@ Thumbs.db
 *.swp
 site/images/
 site/content/
+docs/images/
+docs/content/
