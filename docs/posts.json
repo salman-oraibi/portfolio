@@ -1,5 +1,21 @@
 [
   {
+    "slug": "biodiesel-microreactor-research-with-university-of-bahrain",
+    "file": "content/biodiesel-microreactor-research-with-university-of-bahrain.md",
+    "title": "Biodiesel Microreactor Research with University of Bahrain",
+    "summary": "Microreactors can dramatically cut the cost and energy footprint of biodiesel production — but only if they can be fabricated precisely and affordably. Collaborating with the University of Bahrain's Chemical Engineering department, I led the fabrication program that turned research into 15 trained student engineers and a peer-reviewed publication.",
+    "date": "2026-04-16",
+    "branch": "Fab Lab Bahrain",
+    "tags": [
+      "Research",
+      "Digital Fabrication",
+      "Chemical Engineering"
+    ],
+    "images": [
+      "Fablab_Portfolio_p12_img1.png"
+    ]
+  },
+  {
     "slug": "biomechanics-research-for-the-adidas-harden-7",
     "file": "content/biomechanics-research-for-the-adidas-harden-7.md",
     "title": "Biomechanics Research for the Adidas Harden 7",
@@ -24,6 +40,343 @@
       "Archetype_Portfolio_p6_img6.jpeg",
       "Archetype_Portfolio_p6_img8.jpeg",
       "Archetype_Portfolio_p6_img10.jpeg"
+    ]
+  },
+  {
+    "slug": "bird-observatory-for-arab-regional-centre-for-world-heritage",
+    "file": "content/bird-observatory-for-arab-regional-centre-for-world-heritage.md",
+    "title": "Bird Observatory for Arab Regional Centre for World Heritage",
+    "summary": "Bahrain sits on a critical migratory flyway for birds crossing between Asia, Africa, and Europe. Commissioned by the Arab Regional Centre for World Heritage, I led a team through concept design, research collaboration, and physical prototype delivery for a bird observatory supporting national conservation efforts.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry",
+    "tags": [
+      "Architectural Design",
+      "Conservation",
+      "Prototyping"
+    ],
+    "images": [
+      "Archetype_Portfolio_p14_img1.jpeg",
+      "Archetype_Portfolio_p14_img3.jpeg",
+      "Archetype_Portfolio_p14_img5.jpeg",
+      "Archetype_Portfolio_p14_img7.jpeg",
+      "Archetype_Portfolio_p14_img9.jpeg"
+    ]
+  },
+  {
+    "slug": "building-capacities-through-digital-fabrication",
+    "file": "content/building-capacities-through-digital-fabrication.md",
+    "title": "Building Capacities Through Digital Fabrication",
+    "summary": "Launching Bahrain's first Fab Lab was just the start. Over nearly a decade, I built a layered ecosystem of digital fabrication programs — from MIT's Fab Academy to youth innovation competitions to government-commissioned cultural initiatives — that reached universities, public schools, ministries, and the creative community across Bahrain.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry",
+    "tags": [
+      "Digital Fabrication",
+      "Education",
+      "Innovation Strategy"
+    ],
+    "images": [
+      "Archetype_Portfolio_p17_img2.jpeg",
+      "Archetype_Portfolio_p17_img4.jpeg",
+      "Archetype_Portfolio_p17_img6.jpeg",
+      "Archetype_Portfolio_p17_img8.jpeg",
+      "Archetype_Portfolio_p17_img10.jpeg",
+      "Archetype_Portfolio_p17_img13.jpeg",
+      "Archetype_Portfolio_p17_img15.jpeg",
+      "Archetype_Portfolio_p17_img18.jpeg",
+      "Archetype_Portfolio_p18_img1.jpeg",
+      "Archetype_Portfolio_p18_img3.jpeg",
+      "Archetype_Portfolio_p18_img5.jpeg",
+      "Archetype_Portfolio_p18_img7.jpeg",
+      "Archetype_Portfolio_p19_img1.jpeg",
+      "Archetype_Portfolio_p19_img4.jpeg",
+      "Archetype_Portfolio_p19_img6.jpeg",
+      "Archetype_Portfolio_p20_img1.jpeg",
+      "Archetype_Portfolio_p20_img3.jpeg",
+      "Archetype_Portfolio_p20_img5.jpeg",
+      "Archetype_Portfolio_p20_img7.jpeg",
+      "Archetype_Portfolio_p20_img9.jpeg",
+      "Archetype_Portfolio_p21_img0.jpeg",
+      "Archetype_Portfolio_p21_img2.jpeg",
+      "Archetype_Portfolio_p21_img4.jpeg",
+      "Archetype_Portfolio_p21_img6.jpeg",
+      "Archetype_Portfolio_p21_img8.jpeg",
+      "Archetype_Portfolio_p21_img10.jpeg",
+      "Archetype_Portfolio_p21_img12.jpeg",
+      "Archetype_Portfolio_p22_img1.jpeg",
+      "Archetype_Portfolio_p22_img3.jpeg",
+      "Archetype_Portfolio_p22_img5.jpeg",
+      "Archetype_Portfolio_p22_img7.jpeg",
+      "Archetype_Portfolio_p22_img9.jpeg",
+      "Archetype_Portfolio_p22_img11.jpeg",
+      "Archetype_Portfolio_p22_img12.jpeg"
+    ]
+  },
+  {
+    "slug": "ethafa-steam-edutech-international-partnership",
+    "file": "content/ethafa-steam-edutech-international-partnership.md",
+    "title": "Ethafa STEAM eduTech International Partnership",
+    "summary": "A Swiss startup wanted to close the gender gap in STEAM education for Arabic-speaking girls — and needed regional expertise to make their product land. Fab Lab Bahrain partnered with Ethafa and FabLab SUPSI to refine their educational approach through local workshops and user testing, contributing to a product that secured €150K in grant funding and a Kickstarter launch.",
+    "date": "2026-04-16",
+    "branch": "Fab Lab Bahrain",
+    "tags": [
+      "STEAM Education",
+      "International Partnership",
+      "EdTech"
+    ],
+    "images": [
+      "Fablab_Portfolio_p13_img0.jpeg",
+      "Fablab_Portfolio_p13_img1.png"
+    ]
+  },
+  {
+    "slug": "fab-academy-bahrain-—-mit-digital-fabrication-program",
+    "file": "content/fab-academy-bahrain-—-mit-digital-fabrication-program.md",
+    "title": "Fab Academy Bahrain — MIT Digital Fabrication Program",
+    "summary": "Fab Academy is MIT's most intensive distributed learning program in digital fabrication — a six-month, project-driven diploma that has produced engineers, designers, and founders worldwide. I brought it to Bahrain, qualified as a regional instructor, and over three years built a local program that produced 175+ participants, 80+ prototypes, and 6 qualified instructors.",
+    "date": "2026-04-16",
+    "branch": "Fab Lab Bahrain",
+    "tags": [
+      "Digital Fabrication",
+      "Education",
+      "MIT Fab Academy"
+    ],
+    "images": [
+      "Fablab_Portfolio_p14_img0.jpeg",
+      "Fablab_Portfolio_p14_img1.png"
+    ]
+  },
+  {
+    "slug": "fabn-box-—-train-the-trainers-program-for-educators",
+    "file": "content/fabn-box-—-train-the-trainers-program-for-educators.md",
+    "title": "Fab'n Box — Train-The-Trainers Program for Educators",
+    "summary": "Getting digital fabrication into public schools requires more than equipment — it requires educators who can use it confidently in a classroom. Fab'n Box was a Train-The-Trainers program for vocational school educators, delivered with a portable lab toolbox that took the Fab Lab's capabilities outside its walls and into schools across Bahrain.",
+    "date": "2026-04-16",
+    "branch": "Fab Lab Bahrain",
+    "tags": [
+      "STEAM Education",
+      "Curriculum Design",
+      "Digital Fabrication"
+    ],
+    "images": [
+      "Fablab_Portfolio_p9_img0.jpeg",
+      "Fablab_Portfolio_p9_img1.png"
+    ]
+  },
+  {
+    "slug": "industry-4.0-digital-transformation-with-goic",
+    "file": "content/industry-4.0-digital-transformation-with-goic.md",
+    "title": "Industry 4.0 Digital Transformation with GOIC",
+    "summary": "Industry 4.0 awareness in the Gulf's industrial sector sits at the level of conference slides and vendor pitches. The GOIC program was something different: 36 hours of hands-on training across digital fabrication and industrial IoT, delivered to engineers and technicians from 10 industrial entities across 5 sectors.",
+    "date": "2026-04-16",
+    "branch": "Fab Lab Bahrain",
+    "tags": [
+      "Industry 4.0",
+      "IoT",
+      "Industrial Training"
+    ],
+    "images": [
+      "Fablab_Portfolio_p10_img0.jpeg",
+      "Fablab_Portfolio_p10_img1.png"
+    ]
+  },
+  {
+    "slug": "joharah-—-smart-fashion-product-design",
+    "file": "content/joharah-—-smart-fashion-product-design.md",
+    "title": "Joharah — Smart Fashion Product Design",
+    "summary": "Joharah is a smart fashion product that fuses personal protection and tracking with connected wearable technology — taken from concept to manufacturing-ready design at Archetype Foundry. This was full-cycle product engineering where cultural context, user security, and technical precision all had to coexist.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry",
+    "tags": [
+      "Smart Wearables",
+      "IoT",
+      "Product Design"
+    ],
+    "images": [
+      "Archetype_Portfolio_p9_img1.jpeg",
+      "Archetype_Portfolio_p9_img3.jpeg",
+      "Archetype_Portfolio_p9_img5.jpeg",
+      "Archetype_Portfolio_p9_img7.jpeg",
+      "Archetype_Portfolio_p9_img9.jpeg",
+      "Archetype_Portfolio_p9_img11.jpeg",
+      "Archetype_Portfolio_p9_img13.jpeg"
+    ]
+  },
+  {
+    "slug": "jolt-—-industrial-robotics-and-research-training-space",
+    "file": "content/jolt-—-industrial-robotics-and-research-training-space.md",
+    "title": "JOLT — Industrial Robotics and Research Training Space",
+    "summary": "JOLT is Fab Lab Bahrain's forward programme for industrial-grade technology access — a suite of initiatives spanning a dedicated robotics lab, a mobile fabrication facility, an IoT sandbox for real-environment testing, and an annual ProductCon conference. Designed to raise the regional game in product design, industrial robotics, and applied IoT.",
+    "date": "2026-04-16",
+    "branch": "Fab Lab Bahrain",
+    "tags": [
+      "Industrial Robotics",
+      "IoT",
+      "Innovation Infrastructure"
+    ],
+    "images": [
+      "Fablab_Portfolio_p17_img0.jpeg",
+      "Fablab_Portfolio_p17_img1.jpeg",
+      "Fablab_Portfolio_p17_img2.png",
+      "Fablab_Portfolio_p17_img3.png",
+      "Fablab_Portfolio_p17_img4.jpeg"
+    ]
+  },
+  {
+    "slug": "majaz-—-retail-experience-and-branding",
+    "file": "content/majaz-—-retail-experience-and-branding.md",
+    "title": "MAJAZ — Retail Experience and Branding",
+    "summary": "Retail environments in the Gulf are increasingly expected to do more than house shops — they need to be destinations. For MAJAZ, a hybrid indoor/outdoor mall concept for a Saudi real estate client, I led the architectural concept design, branding strategy, and visualization that brought the project to life.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry",
+    "tags": [
+      "Architectural Design",
+      "Branding",
+      "Retail Experience"
+    ],
+    "images": [
+      "Archetype_Portfolio_p11_img1.jpeg",
+      "Archetype_Portfolio_p11_img3.jpeg",
+      "Archetype_Portfolio_p11_img5.jpeg",
+      "Archetype_Portfolio_p11_img7.jpeg",
+      "Archetype_Portfolio_p11_img9.jpeg",
+      "Archetype_Portfolio_p11_img11.jpeg",
+      "Archetype_Portfolio_p11_img13.jpeg",
+      "Archetype_Portfolio_p11_img16.jpeg",
+      "Archetype_Portfolio_p11_img18.jpeg"
+    ]
+  },
+  {
+    "slug": "oxygem-health-wearable-for-aramco",
+    "file": "content/oxygem-health-wearable-for-aramco.md",
+    "title": "OXYGEM Health Wearable for Aramco",
+    "summary": "Saudi Aramco needed a health wearable that could actually change behaviour — not just track it. I led the full product development cycle for OXYGEM, from concept feasibility to detailed engineering to a gamified mobile app, delivering a device designed to make personal health awareness stick.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry",
+    "tags": [
+      "Wearable Technology",
+      "Health Tech",
+      "Product Development"
+    ],
+    "images": [
+      "Archetype_Portfolio_p8_img1.jpeg",
+      "Archetype_Portfolio_p8_img3.jpeg",
+      "Archetype_Portfolio_p8_img5.jpeg",
+      "Archetype_Portfolio_p8_img7.jpeg",
+      "Archetype_Portfolio_p8_img9.jpeg",
+      "Archetype_Portfolio_p8_img11.jpeg",
+      "Archetype_Portfolio_p8_img13.jpeg",
+      "Archetype_Portfolio_p8_img15.jpeg"
+    ]
+  },
+  {
+    "slug": "rehabilitation-technology-concept-for-cerebral-palsy",
+    "file": "content/rehabilitation-technology-concept-for-cerebral-palsy.md",
+    "title": "Rehabilitation Technology Concept for Cerebral Palsy",
+    "summary": "Rehabilitation devices for cerebral palsy patients demand a level of biomechanical and ergonomic rigour that most product development processes aren't built for. For a Bahraini healthtech startup, I led the concept research and feasibility work — grounded in real biomechanics, anthropometry, and human factors analysis — that gave their product a credible clinical foundation.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry",
+    "tags": [
+      "Rehabilitation Technology",
+      "Biomechanics",
+      "Human Factors"
+    ],
+    "images": [
+      "Archetype_Portfolio_p13_img1.jpeg"
+    ]
+  },
+  {
+    "slug": "smart-capsule-—-portable-uvc-water-purification-device",
+    "file": "content/smart-capsule-—-portable-uvc-water-purification-device.md",
+    "title": "Smart Capsule — Portable UVC Water Purification Device",
+    "summary": "Clean water access in small vessels and remote marine environments is an unsolved last-mile problem. Working across Archetype Foundry and Fab Lab Bahrain, I led the full-cycle engineering of the Smart Capsule — a compact, portable UVC water purification device that achieved 99.9% bacterial reduction in lab validation.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry & Fab Lab Bahrain",
+    "tags": [
+      "Hardware Development",
+      "UVC Technology",
+      "Sustainability"
+    ],
+    "images": [
+      "Archetype_Portfolio_p10_img2.jpeg",
+      "Archetype_Portfolio_p10_img4.jpeg",
+      "Archetype_Portfolio_p10_img6.jpeg",
+      "Archetype_Portfolio_p10_img8.jpeg",
+      "Archetype_Portfolio_p10_img10.jpeg",
+      "Fablab_Portfolio_p11_img0.jpeg",
+      "Fablab_Portfolio_p11_img1.png"
+    ]
+  },
+  {
+    "slug": "smart-composite-tooling-for-bahrain-fiberglass",
+    "file": "content/smart-composite-tooling-for-bahrain-fiberglass.md",
+    "title": "Smart Composite Tooling for Bahrain Fiberglass",
+    "summary": "Large-scale composite manufacturing is held back by the cost and rigidity of conventional tooling. For Bahrain Fiberglass, I led the R&D effort to build a smarter, faster, and more cost-effective tooling solution from the ground up — hardware, software, and prototype combined.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry",
+    "tags": [
+      "Composites",
+      "R&D",
+      "Digital Fabrication"
+    ],
+    "images": [
+      "Archetype_Portfolio_p7_img2.jpeg",
+      "Archetype_Portfolio_p7_img4.jpeg",
+      "Archetype_Portfolio_p7_img6.jpeg",
+      "Archetype_Portfolio_p7_img8.jpeg",
+      "Archetype_Portfolio_p7_img10.jpeg"
+    ]
+  },
+  {
+    "slug": "spark-—-community-digital-skills-initiative",
+    "file": "content/spark-—-community-digital-skills-initiative.md",
+    "title": "SPARK — Community Digital Skills Initiative",
+    "summary": "SPARK turned Fab Lab alumni into ambassadors — training 20 volunteers to deliver digital and e-skills workshops in their own communities, reaching 400+ students aged 8–14 across Bahrain in a single academic year. Backed by the US Embassy and built on an online platform with 35+ designed lessons, it is a scalable community model for grassroots technology education.",
+    "date": "2026-04-16",
+    "branch": "Fab Lab Bahrain",
+    "tags": [
+      "Community Education",
+      "Digital Skills",
+      "Program Development"
+    ],
+    "images": [
+      "Fablab_Portfolio_p15_img0.jpeg",
+      "Fablab_Portfolio_p15_img1.png"
+    ]
+  },
+  {
+    "slug": "techstride-—-empowering-bahraini-youth-with-digital-skills",
+    "file": "content/techstride-—-empowering-bahraini-youth-with-digital-skills.md",
+    "title": "TechStride — Empowering Bahraini Youth with Digital Skills",
+    "summary": "TechStride is a hands-on program that puts high school students and university freshers in front of industrial robotics, AI, machine learning, and game design — not as observers, but as builders. In a single month, 60+ participants produced 20+ prototypes and reported meaningful shifts in their academic and career direction.",
+    "date": "2026-04-16",
+    "branch": "Fab Lab Bahrain",
+    "tags": [
+      "Youth Education",
+      "Robotics",
+      "AI & Machine Learning"
+    ],
+    "images": [
+      "Fablab_Portfolio_p16_img0.jpeg",
+      "Fablab_Portfolio_p16_img1.png"
+    ]
+  },
+  {
+    "slug": "uv-germicidal-sterilization-robot",
+    "file": "content/uv-germicidal-sterilization-robot.md",
+    "title": "UV Germicidal Sterilization Robot",
+    "summary": "At the height of COVID-19, contactless surface sterilization became an urgent operational requirement for hospitals, warehouses, and public spaces. I led the design and fabrication of a functional UV-C sterilization robot — autonomous, media-featured, and built by a multidisciplinary engineering team in weeks, not months.",
+    "date": "2026-04-16",
+    "branch": "Archetype Foundry",
+    "tags": [
+      "Robotics",
+      "Computer Vision",
+      "Hardware Development"
+    ],
+    "images": [
+      "Archetype_Portfolio_p12_img1.jpeg",
+      "Archetype_Portfolio_p12_img2.jpeg",
+      "Archetype_Portfolio_p12_img3.jpeg",
+      "Archetype_Portfolio_p12_img8.jpeg"
     ]
   }
 ]
