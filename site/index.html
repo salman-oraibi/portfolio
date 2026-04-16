@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>My Portfolio</h1>
+      <p class="tagline">Projects &amp; Stories</p>
+    </div>
+    <a href="admin.html" class="admin-link">+ New Story</a>
+  </header>
+
+  <main>
+    <nav id="filters" class="filters" aria-label="Filter by company"></nav>
+
+    <section id="posts-grid" class="posts-grid" aria-live="polite">
+      <p class="empty">Loading posts…</p>
+    </section>
+  </main>
+
+  <!-- Post modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-overlay"></div>
+    <div class="modal-panel">
+      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-content" class="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Built with Python &amp; Claude · <a href="admin.html">Add a story</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+{
+  "defaults": {
+    "resume": "data/SalmanAlaraibi_Resume_April_2026.pdf",
+    "min_score": 2.0,
+    "jpeg_only": true,
+    "skip_pages": 4
+  },
+  "posts": [
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "Biomechanics Research for the Adidas Harden 7",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "5-6",
+      "done": true
+    },
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "Smart Composite Tooling for Bahrain Fiberglass",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "7"
+    },
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "OXYGEM Health Wearable for Aramco",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "8"
+    },
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "Joharah — Smart Fashion Product Design",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "9"
+    },
+    {
+      "company_files": [
+        {"path": "data/Archetype_Portfolio.pdf", "skip_pages": 4, "pages": "10"},
+        {"path": "data/Fablab_Portfolio.pdf", "skip_pages": 8, "pages": "11"}
+      ],
+      "title": "Smart Capsule — Portable UVC Water Purification Device",
+      "branch": "Archetype Foundry & Fab Lab Bahrain"
+    },
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "MAJAZ — Retail Experience and Branding",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "11"
+    },
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "UV Germicidal Sterilization Robot",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "12"
+    },
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "Rehabilitation Technology Concept for Cerebral Palsy",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "13"
+    },
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "Bird Observatory for Arab Regional Centre for World Heritage",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "14"
+    },
+    {
+      "company": "data/Archetype_Portfolio.pdf",
+      "title": "Building Capacities Through Digital Fabrication",
+      "branch": "Archetype Foundry",
+      "skip_pages": 4,
+      "pages": "17-22"
+    },
+    {
+      "company": "data/Fablab_Portfolio.pdf",
+      "title": "Fab'n Box — Train-The-Trainers Program for Educators",
+      "branch": "Fab Lab Bahrain",
+      "skip_pages": 8,
+      "pages": "9"
+    },
+    {
+      "company": "data/Fablab_Portfolio.pdf",
+      "title": "Industry 4.0 Digital Transformation with GOIC",
+      "branch": "Fab Lab Bahrain",
+      "skip_pages": 8,
+      "pages": "10"
+    },
+    {
+      "company": "data/Fablab_Portfolio.pdf",
+      "title": "Biodiesel Microreactor Research with University of Bahrain",
+      "branch": "Fab Lab Bahrain",
+      "skip_pages": 8,
+      "pages": "12"
+    },
+    {
+      "company": "data/Fablab_Portfolio.pdf",
+      "title": "Ethafa STEAM eduTech International Partnership",
+      "branch": "Fab Lab Bahrain",
+      "skip_pages": 8,
+      "pages": "13"
+    },
+    {
+      "company": "data/Fablab_Portfolio.pdf",
+      "title": "Fab Academy Bahrain — MIT Digital Fabrication Program",
+      "branch": "Fab Lab Bahrain",
+      "skip_pages": 8,
+      "pages": "14"
+    },
+    {
+      "company": "data/Fablab_Portfolio.pdf",
+      "title": "SPARK — Community Digital Skills Initiative",
+      "branch": "Fab Lab Bahrain",
+      "skip_pages": 8,
+      "pages": "15"
+    },
+    {
+      "company": "data/Fablab_Portfolio.pdf",
+      "title": "TechStride — Empowering Bahraini Youth with Digital Skills",
+      "branch": "Fab Lab Bahrain",
+      "skip_pages": 8,
+      "pages": "16"
+    },
+    {
+      "company": "data/Fablab_Portfolio.pdf",
+      "title": "JOLT — Industrial Robotics and Research Training Space",
+      "branch": "Fab Lab Bahrain",
+      "skip_pages": 8,
+      "pages": "17"
+    }
+  ]
+}

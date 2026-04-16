@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Story — Portfolio Admin</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Portfolio</a>
+      <h1>New Story</h1>
+    </div>
+  </header>
+
+  <main class="admin-main">
+
+    <div class="admin-pane form-pane">
+      <form id="post-form" novalidate>
+
+        <div class="field">
+          <label for="title">Title <span class="req">*</span></label>
+          <input type="text" id="title" placeholder="What did you build?" required />
+        </div>
+
+        <div class="field">
+          <label for="summary">Summary <span class="req">*</span></label>
+          <input type="text" id="summary" placeholder="One or two sentences shown on the card." required />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="branch">Company / Branch <span class="req">*</span></label>
+            <input type="text" id="branch" placeholder="e.g. Acme Corp" required />
+          </div>
+          <div class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="tags">Tags <span class="hint">(comma-separated)</span></label>
+          <input type="text" id="tags" placeholder="React, Node.js, PostgreSQL" />
+        </div>
+
+        <div class="field">
+          <label for="images">Images <span class="hint">(optional)</span></label>
+          <input type="file" id="images" accept="image/*" multiple />
+          <div id="image-previews" class="image-previews"></div>
+          <p id="image-note" class="field-note" style="display:none"></p>
+        </div>
+
+        <div class="field">
+          <label for="body">Story Body <span class="hint">(markdown)</span></label>
+          <textarea id="body" rows="20" placeholder="Write your story here using markdown…"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="download-btn" class="btn-primary">
+            Download .md file
+          </button>
+          <button type="button" id="download-images-btn" class="btn-secondary" style="display:none">
+            Download images
+          </button>
+        </div>
+
+        <div id="download-note" class="download-note" style="display:none">
+          <strong>Next steps:</strong>
+          <ol>
+            <li>Move the <code>.md</code> file to <code>content/</code></li>
+            <li>Move any images to <code>site/images/</code></li>
+            <li>Run <code>python scripts/build_site.py</code> to update the site</li>
+          </ol>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="admin-pane preview-pane">
+      <div class="preview-header">
+        <span class="preview-label">Preview</span>
+        <span id="preview-slug" class="preview-slug"></span>
+      </div>
+      <div id="preview" class="preview-body">
+        <p class="empty">Start writing to see a preview…</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

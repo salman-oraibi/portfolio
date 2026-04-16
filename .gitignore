@@ -1,0 +1,22 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# PDFs and sensitive data
+data/*.pdf
+
+# Extracted content (regeneratable)
+content/images/
+content/prompts/
+content/prompt_draft.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
