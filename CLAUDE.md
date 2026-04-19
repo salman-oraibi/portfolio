@@ -256,6 +256,23 @@ No backend, no database. Everything is flat files + browser JS.
 - `scripts/generate_post.py` — added `--global-context` argument
 - `scripts/batch_generate.py` — passes `--global-context` to every post
 
+## Phase 7 — Job Application Tailoring Tool
+
+New tab in admin panel: "Job Applications"
+
+### Features
+- **Job post input** — paste text, upload PDF, or enter URL
+- **Base resume selector** — dropdown of PDFs in `data/`
+- **Project selector** — checklist of all posts to include as context
+- **Resume tailoring** — ATS-optimized, keywords matched, relevant experience highlighted
+- **Cover letter generation** — draws from resume + selected project posts
+- **Output design** — minimal, monochromatic, professional "ZEN" aesthetic
+- **Export** — PDF and DOCX formats
+- **LLM tasks** — uses same file-based Claude Code enhance pattern (input/output txt files)
+- **Dependencies** — pdf skill and docx skill from `/mnt/skills/public/`
+
+---
+
 ## Pending UI Improvements
 
 1. **Post card image carousel** — hero image on each card should slowly cycle through the post's images automatically (crossfade transition, ~4 second interval)
@@ -266,7 +283,9 @@ No backend, no database. Everything is flat files + browser JS.
 
 ### Next Session — Pick Up Here
 
-1. Test all admin panel features end to end
-2. Create a test post through the admin panel
-3. UI polish — carousel, image gallery, visual redesign
-4. Content review and regenerate weak posts with career context
+1. Add rollback feature to admin panel (split into two prompts):
+   - Part 1: in-browser rollback (admin.html only)
+   - Part 2: server-side .bak file backup (server.py only)
+2. Test enhance flow on Fab'n Box post
+3. Content review — enhance weak posts one by one
+4. UI polish — carousel, image gallery, visual redesign
