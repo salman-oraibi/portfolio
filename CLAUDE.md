@@ -222,10 +222,41 @@ No backend, no database. Everything is flat files + browser JS.
 - `.nojekyll` fix applied for markdown serving
 - 110 filtered images committed to `docs/images/`
 - Em dash filenames confirmed working fine in browsers
+- `scripts/server.py` — Flask admin server with all API routes
+- `docs/admin.html` — complete admin panel (post CRUD, AI enhance, publish)
+
+## Current Status
+
+**Phase 5 complete — Flask admin panel fully built**
+
+**Admin server:** `python scripts/server.py` → http://127.0.0.1:5000
+
+### Completed this session
+
+- `scripts/server.py` — all API routes working:
+  - `GET /api/posts`, `GET|POST|DELETE /api/posts/<slug>`
+  - `POST /api/generate` — dual PDF source support
+  - `POST /api/enhance` — Claude API leadership reframing
+  - `POST /api/publish` — runs build_site.py
+  - `POST /api/upload/image` — converts to JPEG, resizes to 1200px max
+  - `POST /api/upload/context` — accepts .txt and PDF (extracts text via PyMuPDF)
+  - `GET /api/tags` — returns unique tags + branch names from all posts
+  - `GET /api/pdfs` — lists PDFs in data/
+  - Static routes: `/images/<file>`, `/content/<file>`
+- `docs/admin.html` — complete single-file admin panel:
+  - Post list sidebar with search and delete
+  - Branch checkboxes (Archetype Foundry, Fab Lab Bahrain + dynamic from posts) with custom field
+  - Tag autocomplete datalist + clickable tag palette chips
+  - Dual PDF source in Generate from PDFs modal
+  - PDF and .txt context file upload
+  - Image upload with auto-JPEG conversion
+  - Write/Preview body tabs with word count
+  - AI Enhance button with undo toast
+  - Save Draft and Publish (runs build_site.py)
+- `scripts/generate_post.py` — added `--global-context` argument
+- `scripts/batch_generate.py` — passes `--global-context` to every post
 
 ## Pending UI Improvements
-
-These are deferred until after all posts are generated and core functionality is complete.
 
 1. **Post card image carousel** — hero image on each card should slowly cycle through the post's images automatically (crossfade transition, ~4 second interval)
 
@@ -235,6 +266,7 @@ These are deferred until after all posts are generated and core functionality is
 
 ### Next Session — Pick Up Here
 
-1. Flask admin panel (create/edit posts, LLM enhancement)
-2. UI polish (carousel, image gallery, visual redesign)
-3. Review post content quality across all 18 posts
+1. Test all admin panel features end to end
+2. Create a test post through the admin panel
+3. UI polish — carousel, image gallery, visual redesign
+4. Content review and regenerate weak posts with career context
