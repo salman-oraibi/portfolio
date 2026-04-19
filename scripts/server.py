@@ -247,51 +247,55 @@ def generate():
     return jsonify({"ok": True, "prompt": prompt_content})
 
 
+ENHANCE_INPUT  = CONTENT_DIR / "enhance_input.txt"
+ENHANCE_OUTPUT = CONTENT_DIR / "enhance_output.txt"
+
+
 @app.post("/api/enhance")
 def enhance():
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-    if not api_key:
-        return jsonify({
-            "ok": False,
-            "warning": "ANTHROPIC_API_KEY is not set — enhancement unavailable",
-            "enhanced": None,
-        }), 503
-
     data = request.get_json(silent=True) or {}
     text = data.get("text", "").strip()
     if not text:
         return err("'text' is required")
 
-    context        = data.get("context", "")
-    career_context = data.get("career_context", "")
+    context = data.get("context", "").strip()
 
-    system_prompt = (
-        "You are helping an R&D leader and innovation strategist improve their portfolio post. "
-        "Reframe any solo-developer language to reflect team leadership. "
-        "Use the career context provided to align the narrative with target roles. "
-        "Return only the improved markdown body text."
+    parts = []
+    if context:
+        parts.append(f"=== CONTEXT ===\n{context}\n")
+    parts.append(f"=== POST BODY TO ENHANCE ===\n{text}\n")
+    parts.append(
+        "=== INSTRUCTIONS ===\n"
+        "Rewrite the post body above with these goals:\n"
+        "- Reframe any solo-developer language to reflect team leadership\n"
+        "- This person is an R&D Leader and Innovation Strategist who leads\n"
+        "  multi-disciplinary teams of designers, engineers and developers\n"
+        "- Use language like \"I led\", \"I directed\", \"I coordinated\",\n"
+        "  \"I oversaw\" rather than \"I built\" or \"I coded\"\n"
+        "- Maintain the same structure and sections\n"
+        "- Keep the Skills & Technologies section unchanged\n"
+        "- Return only the improved markdown body, no preamble"
     )
 
-    user_parts = [text]
-    if career_context:
-        user_parts.insert(0, f"CAREER CONTEXT:\n{career_context}\n\n---\n")
-    if context:
-        user_parts.insert(0, f"ADDITIONAL CONTEXT:\n{context}\n\n---\n")
+    CONTENT_DIR.mkdir(parents=True, exist_ok=True)
+    ENHANCE_INPUT.write_text("\n".join(parts), encoding="utf-8")
+    ENHANCE_OUTPUT.write_text("", encoding="utf-8")
 
-    try:
-        import anthropic
-        client = anthropic.Anthropic(api_key=api_key)
-        message = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=4096,
-            system=system_prompt,
-            messages=[{"role": "user", "content": "\n".join(user_parts)}],
-        )
-        enhanced = message.content[0].text
-    except Exception as e:
-        return err(str(e), 500)
+    return jsonify({
+        "status": "ready",
+        "input_file":  "content/enhance_input.txt",
+        "output_file": "content/enhance_output.txt",
+    })
 
-    return jsonify({"ok": True, "enhanced": enhanced})
+
+@app.get("/api/enhance/result")
+def enhance_result():
+    if not ENHANCE_OUTPUT.exists():
+        return jsonify({"status": "pending"})
+    text = ENHANCE_OUTPUT.read_text(encoding="utf-8").strip()
+    if not text:
+        return jsonify({"status": "pending"})
+    return jsonify({"status": "ready", "text": text})
 
 
 @app.post("/api/publish")

@@ -523,6 +523,61 @@
       padding: 1.4rem;
     }
     .modal-box.wide { width: min(720px, calc(100vw - 2rem)); }
+    .modal-box.post-preview {
+      width: min(860px, calc(100vw - 2rem));
+      max-height: 90vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .pp-close-row {
+      display: flex; justify-content: flex-end;
+      padding: 0.9rem 1rem 0;
+      flex-shrink: 0;
+    }
+    .pp-scroll {
+      overflow-y: auto;
+      padding: 0 2rem 2rem;
+      flex: 1;
+    }
+    .pp-title {
+      font-size: 1.7rem; font-weight: 700;
+      line-height: 1.25; letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 0.45rem;
+    }
+    .pp-meta {
+      font-size: 0.78rem; color: var(--muted);
+      display: flex; gap: 0.6rem; align-items: center;
+      flex-wrap: wrap; margin-bottom: 0.9rem;
+    }
+    .pp-meta-sep { color: var(--border); }
+    .pp-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .pp-tag {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+      color: var(--accent);
+      font-size: 0.72rem; font-weight: 500;
+      padding: 0.2rem 0.6rem; border-radius: 999px;
+    }
+    .pp-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+    }
+    .pp-images img {
+      width: 100%; aspect-ratio: 16/10;
+      object-fit: cover; border-radius: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+    }
+    .pp-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 1.2rem 0;
+    }
 
     .modal-hd {
       display: flex; align-items: center; justify-content: space-between;
@@ -802,6 +857,12 @@
           </div>
           <textarea id="body-ta" rows="22" placeholder="Write your story in markdown…"></textarea>
           <div id="body-preview" class="md-body"></div>
+          <div id="enhance-banner" style="display:none; margin-top:0.75rem; padding:0.85rem 1rem; background:var(--surface2); border:1px solid var(--accent); border-radius:6px; font-size:0.82rem; line-height:1.6;">
+            <div style="margin-bottom:0.5rem; font-weight:600; color:var(--accent);">✓ Ready for Claude Code</div>
+            <div style="margin-bottom:0.6rem;">Paste this in your Claude Code terminal:</div>
+            <pre id="enhance-cmd" style="background:var(--surface1); padding:0.6rem 0.8rem; border-radius:4px; font-size:0.78rem; white-space:pre-wrap; word-break:break-all; margin:0 0 0.75rem; color:var(--text);">Read content/enhance_input.txt, rewrite the post following the instructions inside, and save the result to content/enhance_output.txt</pre>
+            <button type="button" class="btn btn-secondary" id="btn-load-enhanced" style="font-size:0.8rem; padding:0.35rem 0.9rem;">Load Enhanced Text</button>
+          </div>
         </div>
 
         <!-- Context (collapsible) -->
@@ -928,15 +989,21 @@
   </div>
 </div>
 
-<!-- ── Preview modal ───────────────────────────────────── -->
+<!-- ── Post preview modal ───────────────────────────────── -->
 <div class="modal" id="preview-modal">
   <div class="modal-bg" onclick="closeModal('preview-modal')"></div>
-  <div class="modal-box wide">
-    <div class="modal-hd">
-      <span class="modal-title" id="preview-modal-title">Preview</span>
-      <button class="modal-close" onclick="closeModal('preview-modal')">&times;</button>
+  <div class="modal-box post-preview">
+    <div class="pp-close-row">
+      <button class="modal-close" onclick="closeModal('preview-modal')" style="flex-shrink:0">&times;</button>
     </div>
-    <div class="md-body" id="preview-modal-body" style="padding-top:0.5rem"></div>
+    <div class="pp-scroll">
+      <h1 class="pp-title" id="pp-title"></h1>
+      <div class="pp-meta" id="pp-meta"></div>
+      <div class="pp-tags" id="pp-tags"></div>
+      <div class="pp-images" id="pp-images"></div>
+      <hr class="pp-divider" id="pp-divider">
+      <div class="md-body" id="pp-body"></div>
+    </div>
   </div>
 </div>
 
@@ -990,6 +1057,7 @@ function bindEvents() {
 
   document.getElementById('btn-gen').addEventListener('click', openGenModal);
   document.getElementById('btn-enhance').addEventListener('click', enhanceWithAI);
+  document.getElementById('btn-load-enhanced').addEventListener('click', loadEnhancedText);
   document.getElementById('btn-preview').addEventListener('click', openPreviewModal);
   document.getElementById('btn-save').addEventListener('click', saveDraft);
   document.getElementById('btn-publish').addEventListener('click', publish);
@@ -1488,7 +1556,7 @@ async function enhanceWithAI() {
   if (!body) { toast('Body is empty', 'error'); return; }
 
   const btn = document.getElementById('btn-enhance');
-  setLoading(btn, true, 'Enhancing…');
+  setLoading(btn, true, 'Preparing…');
 
   try {
     const r = await fetch(`${API}/api/enhance`, {
@@ -1500,23 +1568,9 @@ async function enhanceWithAI() {
       }),
     });
     const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Failed to prepare enhance input');
 
-    if (r.status === 503) {
-      toast(d.warning || 'ANTHROPIC_API_KEY not set', 'error');
-      return;
-    }
-    if (!r.ok) throw new Error(d.error || 'Enhancement failed');
-
-    prevBody = body;
-    document.getElementById('body-ta').value = d.enhanced || '';
-    updateWordCount();
-    markDirty();
-    toast('Text enhanced — review changes before saving', 'info', () => {
-      document.getElementById('body-ta').value = prevBody;
-      updateWordCount();
-      markDirty();
-      prevBody = null;
-    });
+    document.getElementById('enhance-banner').style.display = 'block';
   } catch (e) {
     toast(e.message, 'error');
   } finally {
@@ -1524,12 +1578,80 @@ async function enhanceWithAI() {
   }
 }
 
-// ── Preview modal ──────────────────────────────────────────────────────────
+async function loadEnhancedText() {
+  const r = await fetch(`${API}/api/enhance/result`);
+  const d = await r.json();
+
+  if (d.status !== 'ready') {
+    toast('Not ready yet — run the Claude Code command first', 'info');
+    return;
+  }
+
+  prevBody = document.getElementById('body-ta').value;
+  document.getElementById('body-ta').value = d.text;
+  updateWordCount();
+  markDirty();
+  document.getElementById('enhance-banner').style.display = 'none';
+  toast('Enhanced text loaded', 'success', () => {
+    document.getElementById('body-ta').value = prevBody;
+    updateWordCount();
+    markDirty();
+    prevBody = null;
+  });
+}
+
+// ── Post preview modal ─────────────────────────────────────────────────────
 function openPreviewModal() {
-  const title = document.getElementById('f-title').value || 'Preview';
-  const body  = document.getElementById('body-ta').value;
-  document.getElementById('preview-modal-title').textContent = title;
-  document.getElementById('preview-modal-body').innerHTML = marked.parse(body || '*No content yet*');
+  const title  = document.getElementById('f-title').value.trim() || 'Untitled';
+  const date   = document.getElementById('f-date').value || '';
+  const branch = (() => {
+    const custom = document.getElementById('f-branch-custom').value.trim();
+    if (custom) return custom;
+    const checked = [...document.querySelectorAll('#branch-checks input[type=checkbox]:checked')]
+      .map(cb => cb.value).filter(Boolean);
+    return checked.join(' & ');
+  })();
+  const tags   = parseTags();
+  const body   = document.getElementById('body-ta').value;
+
+  // Title
+  document.getElementById('pp-title').textContent = title;
+
+  // Meta: date + branch
+  const meta = document.getElementById('pp-meta');
+  meta.innerHTML = '';
+  if (date) {
+    const d = document.createElement('span');
+    d.textContent = new Date(date + 'T00:00:00').toLocaleDateString('en-GB', { year:'numeric', month:'long', day:'numeric' });
+    meta.appendChild(d);
+  }
+  if (date && branch) {
+    const sep = document.createElement('span');
+    sep.className = 'pp-meta-sep';
+    sep.textContent = '·';
+    meta.appendChild(sep);
+  }
+  if (branch) {
+    const b = document.createElement('span');
+    b.textContent = branch;
+    meta.appendChild(b);
+  }
+
+  // Tags
+  const tagsEl = document.getElementById('pp-tags');
+  tagsEl.innerHTML = tags.map(t => `<span class="pp-tag">${t}</span>`).join('');
+
+  // Images
+  const imgsEl = document.getElementById('pp-images');
+  imgsEl.innerHTML = currentImgs.map(fn =>
+    `<img src="${API}/images/${encodeURIComponent(fn)}" alt="${fn}" loading="lazy">`
+  ).join('');
+  imgsEl.style.display = currentImgs.length ? 'grid' : 'none';
+  document.getElementById('pp-divider').style.display = currentImgs.length ? 'block' : 'none';
+
+  // Body
+  document.getElementById('pp-body').innerHTML = marked.parse(body || '*No content yet.*');
+
   openModal('preview-modal');
 }
 
