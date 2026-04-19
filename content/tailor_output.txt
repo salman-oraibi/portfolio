@@ -1,0 +1,113 @@
+{
+  "resume": {
+    "name": "Salman Alaraibi",
+    "contact": {
+      "email": "araibi.salman@gmail.com",
+      "phone": "+973 36477647",
+      "linkedin": "linkedin.com/salman-alaraibi",
+      "location": "Manama, Bahrain"
+    },
+    "summary": "Biomedical researcher and physician with an M.Sc. in Biomedical Engineering (Magna Cum Laude) and a medical doctorate, combining clinical expertise with hands-on R&D experience in image processing, data analysis, and computational biomedical research. Co-authored peer-reviewed publications in biomedical engineering and chemical engineering. Experienced in managing research documentation, coordinating multi-institutional collaborations, and translating complex scientific findings into actionable outputs.",
+    "experience": [
+      {
+        "company": "University of Bern, Institute for Surgical Technology",
+        "title": "Researcher — Biomedical R&D",
+        "dates": "2011 – 2014",
+        "bullets": [
+          "Conducted systematic literature reviews and summarised scientific articles to inform R&D direction for a soft tissue simulation platform for CranioMaxilloFacial Surgery, which launched as a commercial surgical diagnostic product.",
+          "Performed image segmentation algorithm analysis and comparative evaluation of medical imaging software for a major pharmaceutical company, producing data-driven recommendations that improved clinical drug trial accuracy.",
+          "Maintained accurate research records and contributed to ethics submissions and regulatory documentation in compliance with Swiss medical research standards.",
+          "Co-authored and contributed to 3 published peer-reviewed papers on 3D face reconstruction, soft tissue simulation, and bone graft selection algorithms.",
+          "Coordinated with multi-disciplinary collaborators across clinical and engineering teams, managing schedules, data pipelines, and project timelines."
+        ]
+      },
+      {
+        "company": "Archetype Foundry Consultancy",
+        "title": "Partner, R&D Lead",
+        "dates": "2014 – Present",
+        "bullets": [
+          "Led collaborative R&D projects with the University of Bahrain, supervising senior engineering projects and integrating academic research into product development roadmaps — including published microreactor research in Chemical Engineering Processing.",
+          "Directed the research design and development of OXYGEM, a health wearable for Aramco, managing data collection requirements, sensor validation, and iterative prototype testing.",
+          "Applied statistical and bioinformatics-adjacent analysis (image processing algorithms, medical data analysis) to research projects spanning biomechanics, embedded systems, and biomedical devices.",
+          "Appointed as National Consultant by WIPO and Ministry of Commerce to produce data-intensive policy research on Bahrain's industrial IP strategy."
+        ]
+      },
+      {
+        "company": "Fab Lab Bahrain",
+        "title": "Co-Founder / Program Development Lead",
+        "dates": "2016 – Present",
+        "bullets": [
+          "Designed and executed training programs with rigorous documentation, learning outcome tracking, and reporting for government and institutional stakeholders.",
+          "Managed multi-partner research collaborations including biodiesel microreactor research (University of Bahrain) and GOIC Industry 4.0 programme, coordinating data collection, analysis, and manuscript preparation.",
+          "Qualified as a regional instructor under MIT's Fab Foundation; managed curriculum delivery across a distributed global network."
+        ]
+      },
+      {
+        "company": "Salmaniya Medical Complex, MOH Bahrain",
+        "title": "Surgeon",
+        "dates": "2000 – 2010",
+        "bullets": [
+          "Maintained rigorous clinical documentation, patient records, and procedural reporting in compliance with Ministry of Health regulatory requirements.",
+          "Participated in clinical research documentation, ethics paperwork, and case reporting as part of standard surgical practice."
+        ]
+      },
+      {
+        "company": "American University of Bahrain",
+        "title": "External Lecturer",
+        "dates": "Sept 2023 – Jan 2024",
+        "bullets": [
+          "Designed project-based learning materials for Digital and Embedded Systems courses, fostering practical technical application."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.Sc. in Biomedical Engineering, Magna Cum Laude",
+        "institution": "University of Bern, Switzerland",
+        "dates": ""
+      },
+      {
+        "degree": "Doctor of Medicine (MUDr.) with Honors",
+        "institution": "Comenius University, Slovak Republic",
+        "dates": ""
+      },
+      {
+        "degree": "Diploma in Digital Fabrication and Prototyping",
+        "institution": "MIT Fab Academy",
+        "dates": ""
+      }
+    ],
+    "skills": [
+      "Bioinformatics & Statistical Analysis",
+      "Medical Data Analysis",
+      "Image Processing Algorithms",
+      "Literature Review & Scientific Writing",
+      "Research Documentation & Record-Keeping",
+      "Data Collection & Database Organisation",
+      "Ethics Submission & Regulatory Paperwork",
+      "Pipeline Development & Execution",
+      "Multi-disciplinary Collaboration & Coordination",
+      "R&D Project Management",
+      "Version Control",
+      "Biomedical Engineering"
+    ],
+    "projects": [
+      {
+        "name": "Biodiesel Microreactor Research — University of Bahrain",
+        "branch": "Archetype Foundry / Fab Lab Bahrain",
+        "description": "Co-led a multi-year academic R&D collaboration producing published research in Chemical Engineering Processing. Managed data collection, fabrication pipeline, and manuscript preparation with 15 trained student engineers."
+      },
+      {
+        "name": "Soft Tissue Simulation for CranioMaxilloFacial Surgery",
+        "branch": "University of Bern",
+        "description": "Core member of the R&D team that developed and published a soft tissue simulation platform that launched as a commercial surgical diagnostic product. Contributed to literature review, data analysis, and co-authorship of peer-reviewed papers."
+      },
+      {
+        "name": "OXYGEM Health Wearable — Aramco",
+        "branch": "Archetype Foundry",
+        "description": "Led the full research and product development cycle for a pervasive health wearable, from feasibility and sensor validation through to a functional device with mobile application integration."
+      }
+    ]
+  },
+  "cover_letter": "The responsibilities outlined in this role — literature reviews, data pipeline execution, research documentation, and cross-collaborator coordination — describe work I have been doing across clinical, academic, and applied R&D settings for over a decade. I am writing to apply because my background in biomedical engineering research and medical science maps directly onto what you are looking for.\n\nDuring my time as a researcher at the University of Bern's Institute for Surgical Technology, I was embedded in a clinical R&D team developing a soft tissue simulation platform for CranioMaxilloFacial Surgery. That work required systematic literature reviews, image segmentation analysis, multi-site collaboration coordination, ethics and regulatory documentation, and co-authorship of peer-reviewed publications — including papers in the Annals of Biomedical Engineering. I understand what it means to maintain research integrity under scientific scrutiny.\n\nMore recently, through Archetype Foundry, I led a multi-year research collaboration with the University of Bahrain's Chemical Engineering Department that produced published microreactor research. Managing that project meant owning the data collection pipeline, coordinating student researchers, and seeing the work through to manuscript submission. I also directed the development of OXYGEM, a health wearable for Aramco's Future Lab programme, where sensor data analysis and iterative research documentation were central to the project's progression.\n\nMy M.Sc. in Biomedical Engineering (Magna Cum Laude, University of Bern) and medical doctorate give me the scientific foundation to engage with bioinformatics and statistical analysis at a meaningful level, and my experience building and executing research pipelines — including image processing and medical data analysis workflows — means I can contribute from day one rather than requiring an extended ramp-up.\n\nI would welcome the opportunity to discuss how my background fits your team's research direction.\n\nSincerely,\nSalman Alaraibi"
+}

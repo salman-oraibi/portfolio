@@ -764,6 +764,224 @@
     .branch-custom-wrap {
       margin-top: 0.5rem;
     }
+
+    /* ── Top-level nav tabs ── */
+    .nav-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      background: var(--surface);
+    }
+    .nav-tab {
+      padding: 0.55rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: var(--font);
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: var(--text); }
+    .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── Applications panel ── */
+    .app-panel {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem 2rem 1rem;
+    }
+    .app-panel.show { display: block; }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 1100px;
+    }
+    @media (max-width: 820px) {
+      .app-grid { grid-template-columns: 1fr; }
+    }
+
+    .app-col-title {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .app-section {
+      margin-bottom: 1.4rem;
+    }
+
+    /* Job post input tabs */
+    .input-tab-bar {
+      display: flex;
+      gap: 0.15rem;
+      margin-bottom: 0.5rem;
+    }
+    .input-tab {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      font-size: 0.76rem;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+    .input-tab:hover { border-color: var(--accent); color: var(--text); }
+    .input-tab.active { background: var(--border); color: var(--text); border-color: var(--border); }
+
+    .fetch-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .fetch-row input { flex: 1; }
+
+    .app-word-count {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* Project checklist */
+    .project-checklist {
+      max-height: 260px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface2);
+    }
+    .project-check-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.45rem 0.7rem;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .project-check-item:last-child { border-bottom: none; }
+    .project-check-item:hover { background: rgba(255,255,255,0.03); }
+    .project-check-item input[type="checkbox"] {
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .project-check-title {
+      font-size: 0.8rem;
+      flex: 1;
+    }
+    .project-check-branch {
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .checklist-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.4rem;
+    }
+    .checklist-link {
+      font-size: 0.73rem;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: var(--font);
+    }
+    .checklist-link:hover { text-decoration: underline; }
+
+    /* Status area */
+    .app-status-area {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .app-status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+    .app-status-dot.ready   { background: var(--green); }
+    .app-status-dot.working { background: var(--yellow); }
+    .app-status-dot.done    { background: var(--accent); }
+
+    /* Tailor banner */
+    .tailor-banner {
+      display: none;
+      margin-bottom: 1rem;
+      padding: 0.85rem 1rem;
+      background: var(--surface2);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+    .tailor-banner pre {
+      background: var(--surface);
+      padding: 0.6rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.76rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin: 0.5rem 0 0.75rem;
+      color: var(--text);
+      font-family: var(--font-mono);
+    }
+
+    /* Download section */
+    .download-section {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      background: color-mix(in srgb, var(--green) 6%, transparent);
+      border: 1px solid color-mix(in srgb, var(--green) 25%, transparent);
+      border-radius: var(--radius);
+    }
+    .download-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 0.6rem;
+    }
+    .download-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    /* App action bar */
+    .app-action-bar {
+      display: none;
+      flex-shrink: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .app-action-bar.show { display: flex; }
+    .app-status-text {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -777,13 +995,28 @@
       <a href="index.html" class="back-link">← Portfolio</a>
     </div>
 
-    <div class="sidebar-top">
-      <button class="btn-new" id="new-btn">＋ New Post</button>
-      <input type="text" class="search-input" id="search" placeholder="Search posts…">
+    <!-- Nav tabs -->
+    <div class="nav-tabs">
+      <button class="nav-tab active" id="nav-posts" onclick="switchNavTab('posts')">Posts</button>
+      <button class="nav-tab" id="nav-apps" onclick="switchNavTab('apps')">Applications</button>
     </div>
 
-    <div class="post-list" id="post-list">
-      <p class="list-empty">Loading…</p>
+    <!-- Posts sidebar content -->
+    <div id="sidebar-posts" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
+      <div class="sidebar-top">
+        <button class="btn-new" id="new-btn">＋ New Post</button>
+        <input type="text" class="search-input" id="search" placeholder="Search posts…">
+      </div>
+      <div class="post-list" id="post-list">
+        <p class="list-empty">Loading…</p>
+      </div>
+    </div>
+
+    <!-- Applications sidebar content -->
+    <div id="sidebar-apps" style="display:none; flex:1; overflow:hidden; padding:0.75rem;">
+      <p style="font-size:0.78rem; color:var(--muted); line-height:1.6;">
+        Tailor your resume and write a cover letter for a specific job posting using AI.
+      </p>
     </div>
   </aside>
 
@@ -885,14 +1118,121 @@
       </form>
     </div>
 
-    <!-- Action bar -->
+    <!-- Post editor action bar -->
     <div class="action-bar" id="action-bar">
       <button class="btn btn-ghost" id="btn-gen">⚙ Generate from PDFs</button>
       <button class="btn btn-ghost" id="btn-enhance">✨ Enhance with AI</button>
       <button class="btn btn-ghost" id="btn-preview">👁 Preview</button>
       <div class="action-spacer"></div>
+      <button class="btn btn-ghost" id="btn-rollback" style="display:none;">↩ Rollback</button>
       <button class="btn btn-secondary" id="btn-save">Save Draft</button>
       <button class="btn btn-accent" id="btn-publish">Publish</button>
+    </div>
+
+    <!-- ── Applications panel ──────────────────────────── -->
+    <div class="app-panel" id="app-panel">
+      <div class="app-col-title" style="margin-bottom:1.25rem;">Job Application Tailoring</div>
+      <div class="app-grid">
+
+        <!-- LEFT: Inputs -->
+        <div>
+
+          <!-- Job Post -->
+          <div class="app-section">
+            <div class="sec-label">Job Post</div>
+            <div class="input-tab-bar">
+              <button class="input-tab active" id="job-tab-paste" onclick="switchJobTab('paste')">Paste Text</button>
+              <button class="input-tab" id="job-tab-url" onclick="switchJobTab('url')">Fetch URL</button>
+            </div>
+
+            <div id="job-paste-pane">
+              <textarea id="job-text" rows="8" placeholder="Paste job description here…" oninput="updateJobWordCount()"></textarea>
+              <div class="app-word-count" id="job-word-count">0 words</div>
+            </div>
+
+            <div id="job-url-pane" style="display:none;">
+              <div class="fetch-row" style="margin-bottom:0.5rem;">
+                <input type="text" id="job-url-input" placeholder="https://example.com/job-post">
+                <button class="btn btn-secondary" id="btn-fetch-url" onclick="fetchJobUrl()">Fetch</button>
+              </div>
+              <textarea id="job-url-text" rows="7" readonly placeholder="Extracted text will appear here…" oninput="updateJobWordCount()"></textarea>
+              <div class="app-word-count" id="job-url-word-count">0 words</div>
+            </div>
+          </div>
+
+          <!-- Resume -->
+          <div class="app-section">
+            <div class="sec-label">Base Resume</div>
+            <select id="job-resume-sel" style="width:100%;"></select>
+          </div>
+
+          <!-- Projects -->
+          <div class="app-section">
+            <div class="sec-label">Relevant Projects</div>
+            <div class="project-checklist" id="project-checklist">
+              <div class="project-check-item"><span style="color:var(--muted);font-size:0.8rem;">Loading…</span></div>
+            </div>
+            <div class="checklist-actions">
+              <button class="checklist-link" onclick="setAllProjects(true)">Select All</button>
+              <button class="checklist-link" onclick="setAllProjects(false)">Clear All</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Output -->
+        <div>
+
+          <!-- Status -->
+          <div class="app-status-area" id="app-status-area">
+            <div class="app-status-dot ready" id="app-status-dot"></div>
+            <span id="app-status-msg">Ready — fill in the inputs and click Prepare Prompt</span>
+          </div>
+
+          <!-- Claude Code instruction banner -->
+          <div class="tailor-banner" id="tailor-banner">
+            <div style="font-weight:600; color:var(--accent); margin-bottom:0.4rem;">✓ Ready for Claude Code</div>
+            <div>Paste this in your Claude Code terminal:</div>
+            <pre>Read content/tailor_input.txt, follow the instructions inside, and save the result to content/tailor_output.txt as valid JSON:
+{
+  "resume": { "name", "contact": {"email","phone","linkedin","location"},
+              "summary", "experience": [], "education": [], "skills": [], "projects": [] },
+  "cover_letter": "plain text..."
+}</pre>
+            <div style="margin-bottom:0.75rem; font-size:0.78rem; color:var(--muted);">Then click Generate PDF below.</div>
+            <button class="btn btn-secondary" id="btn-gen-pdf" onclick="generatePDF()" disabled style="font-size:0.8rem; padding:0.35rem 0.9rem;">
+              Generate PDF
+            </button>
+            <button class="btn btn-ghost" id="btn-check-output" onclick="checkTailorOutput()" style="font-size:0.8rem; padding:0.35rem 0.9rem; margin-left:0.4rem;">
+              Check Output
+            </button>
+          </div>
+
+          <!-- Downloads -->
+          <div class="download-section" id="download-section">
+            <div class="download-section-title">✓ PDFs Ready</div>
+            <div class="download-btns">
+              <a id="dl-resume" href="#" target="_blank" class="btn btn-secondary" style="font-size:0.78rem; text-decoration:none;">
+                ↓ Download Resume PDF
+              </a>
+              <a id="dl-coverletter" href="#" target="_blank" class="btn btn-secondary" style="font-size:0.78rem; text-decoration:none;">
+                ↓ Download Cover Letter
+              </a>
+              <a id="preview-resume" href="#" target="_blank" class="btn btn-ghost" style="font-size:0.78rem; text-decoration:none;">
+                👁 Preview Resume
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Applications action bar -->
+    <div class="app-action-bar" id="app-action-bar">
+      <div class="action-spacer"></div>
+      <span class="app-status-text" id="app-action-status"></span>
+      <button class="btn btn-accent" id="btn-prepare-prompt" onclick="prepareTailorPrompt()">Prepare Prompt</button>
     </div>
   </div>
 </div>
@@ -1021,6 +1361,7 @@ let posts        = [];
 let currentSlug  = null;
 let isDirty      = false;
 let currentImgs  = [];
+let originalBody = null;
 let prevBody     = null;
 let pendingDel   = null;
 let pdfsCache    = null;
@@ -1058,6 +1399,7 @@ function bindEvents() {
   document.getElementById('btn-gen').addEventListener('click', openGenModal);
   document.getElementById('btn-enhance').addEventListener('click', enhanceWithAI);
   document.getElementById('btn-load-enhanced').addEventListener('click', loadEnhancedText);
+  document.getElementById('btn-rollback').addEventListener('click', rollbackEnhance);
   document.getElementById('btn-preview').addEventListener('click', openPreviewModal);
   document.getElementById('btn-save').addEventListener('click', saveDraft);
   document.getElementById('btn-publish').addEventListener('click', publish);
@@ -1147,6 +1489,7 @@ function newPost() {
   if (isDirty && !confirm('Unsaved changes — discard?')) return;
   currentSlug = null;
   isDirty = false;
+  originalBody = '';
   populate({ title:'', branch:'', date: today(), summary:'', tags:[], images:[], body:'' });
   showEditor();
   setActiveItem(null);
@@ -1161,10 +1504,14 @@ function populate(post) {
   document.getElementById('f-summary').value = post.summary || '';
   document.getElementById('f-tags').value    = (post.tags || []).join(', ');
   document.getElementById('body-ta').value   = post.body    || '';
+  originalBody = post.body || '';
   document.getElementById('f-ctx').value     = '';
   document.getElementById('ctx-file-label').textContent = '';
 
   currentImgs = [...(post.images || [])];
+  prevBody = null;
+  document.getElementById('btn-rollback').style.display = 'none';
+  document.getElementById('enhance-banner').style.display = 'none';
   renderImgs();
   renderChips();
   updateWordCount();
@@ -1410,6 +1757,8 @@ async function saveDraft() {
     const wasNew = !posts.find(p => p.slug === slug);
     currentSlug = slug;
     isDirty = false;
+    prevBody = null;
+    document.getElementById('btn-rollback').style.display = 'none';
     setTitle();
     await loadPosts();
     setActiveItem(slug);
@@ -1592,12 +1941,18 @@ async function loadEnhancedText() {
   updateWordCount();
   markDirty();
   document.getElementById('enhance-banner').style.display = 'none';
-  toast('Enhanced text loaded', 'success', () => {
-    document.getElementById('body-ta').value = prevBody;
-    updateWordCount();
-    markDirty();
-    prevBody = null;
-  });
+  document.getElementById('btn-rollback').style.display = 'inline-flex';
+  toast('Enhanced text loaded ✓', 'success');
+}
+
+function rollbackEnhance() {
+  if (prevBody === null) return;
+  document.getElementById('body-ta').value = prevBody;
+  updateWordCount();
+  markDirty();
+  prevBody = null;
+  document.getElementById('btn-rollback').style.display = 'none';
+  toast('Rolled back to previous version', 'info');
 }
 
 // ── Post preview modal ─────────────────────────────────────────────────────
@@ -1731,6 +2086,259 @@ function esc(s) {
 }
 
 init();
+
+// ── Applications tab ───────────────────────────────────────────────────────
+
+let appsInitialized = false;
+
+function switchNavTab(tab) {
+  // Nav tab buttons
+  document.getElementById('nav-posts').classList.toggle('active', tab === 'posts');
+  document.getElementById('nav-apps').classList.toggle('active',  tab === 'apps');
+
+  // Sidebar sections
+  document.getElementById('sidebar-posts').style.display = tab === 'posts' ? 'flex'  : 'none';
+  document.getElementById('sidebar-apps').style.display  = tab === 'apps'  ? 'block' : 'none';
+
+  // Main panel sections
+  const editorScroll = document.getElementById('editor-scroll');
+  const actionBar    = document.getElementById('action-bar');
+  const appPanel     = document.getElementById('app-panel');
+  const appActionBar = document.getElementById('app-action-bar');
+
+  if (tab === 'posts') {
+    editorScroll.style.display = '';
+    actionBar.style.display    = '';
+    appPanel.classList.remove('show');
+    appActionBar.classList.remove('show');
+  } else {
+    // Hide editor; keep its display value for when we come back
+    editorScroll.style.display = 'none';
+    actionBar.style.display    = 'none';
+    appPanel.classList.add('show');
+    appActionBar.classList.add('show');
+    if (!appsInitialized) initApps();
+  }
+}
+
+async function initApps() {
+  appsInitialized = true;
+
+  // Load resumes
+  try {
+    const r = await fetch(`${API}/api/jobs/resumes`);
+    const list = await r.json();
+    const sel = document.getElementById('job-resume-sel');
+    sel.innerHTML = '';
+    if (!list.length) {
+      sel.innerHTML = '<option disabled>No resume PDFs found in data/</option>';
+    } else {
+      list.forEach((f, i) => {
+        const o = document.createElement('option');
+        o.value = f; o.textContent = f;
+        if (i === 0) o.selected = true;
+        sel.appendChild(o);
+      });
+    }
+  } catch {
+    document.getElementById('job-resume-sel').innerHTML =
+      '<option disabled>Cannot reach server</option>';
+  }
+
+  // Load posts checklist
+  try {
+    const r = await fetch(`${API}/api/jobs/posts`);
+    const list = await r.json();
+    const el = document.getElementById('project-checklist');
+    el.innerHTML = '';
+    list.forEach(p => {
+      const row = document.createElement('label');
+      row.className = 'project-check-item';
+      row.innerHTML = `
+        <input type="checkbox" name="proj" value="${esc(p.slug)}">
+        <span class="project-check-title">${esc(p.title)}</span>
+        ${p.branch ? `<span class="project-check-branch">${esc(p.branch)}</span>` : ''}`;
+      el.appendChild(row);
+    });
+  } catch {
+    document.getElementById('project-checklist').innerHTML =
+      '<div class="project-check-item"><span style="color:var(--muted);font-size:0.8rem;">Cannot reach server</span></div>';
+  }
+}
+
+function setAllProjects(checked) {
+  document.querySelectorAll('#project-checklist input[type="checkbox"]')
+    .forEach(cb => { cb.checked = checked; });
+}
+
+function switchJobTab(tab) {
+  document.getElementById('job-tab-paste').classList.toggle('active', tab === 'paste');
+  document.getElementById('job-tab-url').classList.toggle('active',   tab === 'url');
+  document.getElementById('job-paste-pane').style.display = tab === 'paste' ? '' : 'none';
+  document.getElementById('job-url-pane').style.display   = tab === 'url'   ? '' : 'none';
+}
+
+function updateJobWordCount() {
+  const pasteActive = document.getElementById('job-paste-pane').style.display !== 'none';
+  if (pasteActive) {
+    const t = document.getElementById('job-text').value.trim();
+    const n = t ? t.split(/\s+/).length : 0;
+    document.getElementById('job-word-count').textContent = `${n} word${n !== 1 ? 's' : ''}`;
+  } else {
+    const t = document.getElementById('job-url-text').value.trim();
+    const n = t ? t.split(/\s+/).length : 0;
+    document.getElementById('job-url-word-count').textContent = `${n} word${n !== 1 ? 's' : ''}`;
+  }
+}
+
+async function fetchJobUrl() {
+  const url = document.getElementById('job-url-input').value.trim();
+  if (!url) { toast('Enter a URL first', 'error'); return; }
+
+  const btn = document.getElementById('btn-fetch-url');
+  setLoading(btn, true, 'Fetching…');
+  try {
+    const r = await fetch(`${API}/api/jobs/fetch-url`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url }),
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Fetch failed');
+    document.getElementById('job-url-text').value = d.text;
+    updateJobWordCount();
+    toast('Page fetched', 'success');
+  } catch (e) {
+    toast(e.message, 'error');
+  } finally {
+    setLoading(btn, false, 'Fetch');
+  }
+}
+
+function getActiveJobText() {
+  const pasteActive = document.getElementById('job-paste-pane').style.display !== 'none';
+  return pasteActive
+    ? document.getElementById('job-text').value.trim()
+    : document.getElementById('job-url-text').value.trim();
+}
+
+function setAppStatus(msg, state = 'working') {
+  document.getElementById('app-status-msg').textContent = msg;
+  document.getElementById('app-action-status').textContent = msg;
+  const dot = document.getElementById('app-status-dot');
+  dot.className = 'app-status-dot';
+  if (state) dot.classList.add(state);
+}
+
+async function prepareTailorPrompt() {
+  const jobText    = getActiveJobText();
+  const resumeFile = document.getElementById('job-resume-sel').value;
+
+  if (!jobText)    { toast('Paste or fetch a job description first', 'error'); return; }
+  if (!resumeFile) { toast('Select a resume file', 'error'); return; }
+
+  const selectedPosts = [...document.querySelectorAll('#project-checklist input[type="checkbox"]:checked')]
+    .map(cb => cb.value);
+
+  const btn = document.getElementById('btn-prepare-prompt');
+  setLoading(btn, true, 'Preparing…');
+  setAppStatus('Preparing prompt…', 'working');
+
+  try {
+    const r = await fetch(`${API}/api/jobs/tailor`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        job_text:       jobText,
+        resume_file:    resumeFile,
+        selected_posts: selectedPosts,
+        output_type:    'both',
+      }),
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Tailor failed');
+
+    document.getElementById('tailor-banner').style.display = 'block';
+    document.getElementById('btn-gen-pdf').disabled = false;
+    setAppStatus('Waiting for Claude Code…', 'working');
+    toast('Prompt written to content/tailor_input.txt', 'success');
+  } catch (e) {
+    setAppStatus('Error — see toast', 'working');
+    toast(e.message, 'error');
+  } finally {
+    setLoading(btn, false, 'Prepare Prompt');
+  }
+}
+
+async function checkTailorOutput() {
+  const btn = document.getElementById('btn-check-output');
+  setLoading(btn, true, 'Checking…');
+  try {
+    const r = await fetch(`${API}/api/jobs/check-output`);
+    const d = await r.json();
+    if (d.ready) {
+      document.getElementById('btn-gen-pdf').disabled = false;
+      setAppStatus('Output ready — click Generate PDF', 'ready');
+      toast('tailor_output.txt is ready', 'success');
+    } else {
+      toast('Not ready yet — run the Claude Code command first', 'info');
+    }
+  } catch {
+    toast('Cannot reach server', 'error');
+  } finally {
+    setLoading(btn, false, 'Check Output');
+  }
+}
+
+async function generatePDF() {
+  const btn = document.getElementById('btn-gen-pdf');
+  setLoading(btn, true, 'Generating…');
+  setAppStatus('Generating PDF…', 'working');
+
+  try {
+    // Read tailor_output.txt
+    const ro = await fetch(`${API}/api/jobs/tailor-output`);
+    const od = await ro.json();
+    if (!ro.ok) throw new Error(od.error || 'Could not read tailor output');
+
+    let parsed;
+    try {
+      parsed = JSON.parse(od.content);
+    } catch {
+      throw new Error('tailor_output.txt is not valid JSON — re-run the Claude Code command');
+    }
+
+    const r = await fetch(`${API}/api/jobs/generate-pdf`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        resume_json:       parsed.resume       || null,
+        cover_letter_text: parsed.cover_letter || '',
+        output_type:       'both',
+      }),
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'PDF generation failed');
+
+    const base = API;
+    if (d.resume_url) {
+      document.getElementById('dl-resume').href      = base + d.resume_url;
+      document.getElementById('preview-resume').href = base + d.resume_url;
+    }
+    if (d.coverletter_url) {
+      document.getElementById('dl-coverletter').href = base + d.coverletter_url;
+    }
+
+    document.getElementById('download-section').style.display = 'block';
+    setAppStatus('Done ✓', 'done');
+    toast('PDFs generated', 'success');
+  } catch (e) {
+    setAppStatus('Error — see toast', 'working');
+    toast(e.message, 'error');
+  } finally {
+    setLoading(btn, false, 'Generate PDF');
+  }
+}
 </script>
 </body>
 </html>

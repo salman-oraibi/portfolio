@@ -1,0 +1,274 @@
+{#
+Sample data for testing:
+resume = {
+  "name": "Salman Al-Araibi",
+  "contact": {"email": "araibi.salman@gmail.com", "phone": "+973 0000 0000", "linkedin": "linkedin.com/in/salman", "location": "Bahrain"},
+  "summary": "R&D Leader and Innovation Strategist with 10+ years leading multidisciplinary teams across digital fabrication, product design, and emerging technology.",
+  "experience": [
+    {"company": "Fab Lab Bahrain", "title": "Director of Research & Innovation", "dates": "2015 – Present",
+     "bullets": ["Led 20+ funded R&D projects in partnership with government and industry.", "Directed a multidisciplinary team of 12 engineers, designers, and researchers."]},
+    {"company": "Archetype Foundry", "title": "Co-Founder & Innovation Lead", "dates": "2019 – Present",
+     "bullets": ["Built and scaled a product design consultancy from 0 to 15 clients.", "Oversaw end-to-end delivery of hardware and software product lines."]}
+  ],
+  "education": [
+    {"degree": "MSc Industrial Design", "institution": "University of Bahrain", "dates": "2012 – 2014"},
+    {"degree": "BSc Mechanical Engineering", "institution": "University of Bahrain", "dates": "2008 – 2012"}
+  ],
+  "skills": ["Digital Fabrication", "R&D Management", "Product Design", "Team Leadership", "Strategic Planning", "Design Thinking"],
+  "projects": [
+    {"name": "Fab'n Box", "branch": "Fab Lab Bahrain", "description": "Train-the-trainers program reaching 450+ students across Bahrain's public schools."},
+    {"name": "OxyGem", "branch": "Archetype Foundry", "description": "Health wearable developed in partnership with Saudi Aramco."}
+  ]
+}
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: 210mm 297mm;
+    margin: 18mm 16mm;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.45;
+  }
+
+  /* ── Header ── */
+  .header {
+    margin-bottom: 10pt;
+  }
+
+  .header-name {
+    font-size: 24pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.1;
+    margin-bottom: 5pt;
+  }
+
+  .header-contact {
+    font-size: 9pt;
+    color: #555;
+    letter-spacing: 0.02em;
+  }
+
+  .header-contact span + span::before {
+    content: " · ";
+    color: #999;
+  }
+
+  .rule {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 8pt 0;
+  }
+
+  /* ── Summary ── */
+  .summary {
+    font-size: 10pt;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 14pt;
+  }
+
+  /* ── Sections ── */
+  .section {
+    margin-bottom: 14pt;
+  }
+
+  .section-title {
+    font-size: 9pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 4pt;
+  }
+
+  .section-rule {
+    border: none;
+    border-top: 1px solid #000;
+    margin-bottom: 8pt;
+  }
+
+  /* ── Experience / Education entries ── */
+  .entry {
+    margin-bottom: 10pt;
+  }
+
+  .entry-header {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .entry-company {
+    display: table-cell;
+    font-size: 10pt;
+    font-weight: bold;
+  }
+
+  .entry-dates {
+    display: table-cell;
+    font-size: 10pt;
+    text-align: right;
+    white-space: nowrap;
+    width: 90pt;
+  }
+
+  .entry-title {
+    font-size: 9pt;
+    font-style: italic;
+    margin-bottom: 3pt;
+  }
+
+  .entry-bullets {
+    list-style: disc;
+    padding-left: 14pt;
+    font-size: 9pt;
+    line-height: 1.5;
+  }
+
+  .entry-bullets li {
+    margin-bottom: 1.5pt;
+  }
+
+  /* ── Skills ── */
+  .skills-list {
+    font-size: 9pt;
+    line-height: 1.6;
+  }
+
+  /* ── Projects ── */
+  .project-entry {
+    margin-bottom: 7pt;
+  }
+
+  .project-header {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .project-name {
+    display: table-cell;
+    font-size: 9pt;
+    font-weight: bold;
+  }
+
+  .project-branch {
+    display: table-cell;
+    font-size: 9pt;
+    text-align: right;
+    color: #555;
+    width: 120pt;
+    white-space: nowrap;
+  }
+
+  .project-desc {
+    font-size: 9pt;
+    font-style: italic;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-name">{{ resume.name }}</div>
+  <div class="header-contact">
+    {% if resume.contact.email    %}<span>{{ resume.contact.email }}</span>{% endif %}
+    {% if resume.contact.phone    %}<span>{{ resume.contact.phone }}</span>{% endif %}
+    {% if resume.contact.linkedin %}<span>{{ resume.contact.linkedin }}</span>{% endif %}
+    {% if resume.contact.location %}<span>{{ resume.contact.location }}</span>{% endif %}
+  </div>
+</div>
+<hr class="rule">
+
+<!-- Summary -->
+{% if resume.summary %}
+<div class="summary">{{ resume.summary }}</div>
+{% endif %}
+
+<!-- Experience -->
+{% if resume.experience %}
+<div class="section">
+  <div class="section-title">Experience</div>
+  <hr class="section-rule">
+  {% for role in resume.experience %}
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-company">{{ role.company }}</span>
+      <span class="entry-dates">{{ role.dates }}</span>
+    </div>
+    <div class="entry-title">{{ role.title }}</div>
+    {% if role.bullets %}
+    <ul class="entry-bullets">
+      {% for bullet in role.bullets %}
+      <li>{{ bullet }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- Education -->
+{% if resume.education %}
+<div class="section">
+  <div class="section-title">Education</div>
+  <hr class="section-rule">
+  {% for edu in resume.education %}
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-company">{{ edu.institution }}</span>
+      <span class="entry-dates">{{ edu.dates }}</span>
+    </div>
+    <div class="entry-title">{{ edu.degree }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- Skills -->
+{% if resume.skills %}
+<div class="section">
+  <div class="section-title">Skills</div>
+  <hr class="section-rule">
+  <div class="skills-list">{{ resume.skills | join(", ") }}</div>
+</div>
+{% endif %}
+
+<!-- Projects -->
+{% if resume.projects %}
+<div class="section">
+  <div class="section-title">Projects</div>
+  <hr class="section-rule">
+  {% for proj in resume.projects %}
+  <div class="project-entry">
+    <div class="project-header">
+      <span class="project-name">{{ proj.name }}</span>
+      {% if proj.branch %}<span class="project-branch">{{ proj.branch }}</span>{% endif %}
+    </div>
+    {% if proj.description %}<div class="project-desc">{{ proj.description }}</div>{% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+</body>
+</html>

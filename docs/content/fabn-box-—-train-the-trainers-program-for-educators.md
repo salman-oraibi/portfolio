@@ -32,7 +32,7 @@ Three MiniLABs were established, staffed by seven trained trainers, and the prog
 
 Fab'n Box created a scalable model for digital fabrication education in public schools that doesn't depend on school-level infrastructure investment. The trained educators can now run meaningful STEAM activities independently, in their own classrooms, with the toolbox as their enabling platform. The program's portability means coverage is limited by trainer capacity, not by equipment availability.
 
-The partnership with the Ministry of Education and the American Embassy gave the program institutional legitimacy and reach that a standalone Fab Lab initiative couldn't achieve independently — and demonstrated that a well-designed curriculum and portable toolkit can extend the Fab Lab's educational impact far beyond its physical location.
+The partnership with the Ministry of Education and the American Embassy gave the program institutional legitimacy and reach that a standalone Fab Lab initiative couldn't achieve independently — and demonstrated that a well-designed curriculum and portable toolkit can extend the Fab Lab's educational impact far beyond its physical location. The program content and curriculum were accredited by Center of Excellence for Technical and Vocational Education as an upskilling program for educators at the ministry of education. 
 
 ## Skills & Technologies
 

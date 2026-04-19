@@ -256,20 +256,29 @@ No backend, no database. Everything is flat files + browser JS.
 - `scripts/generate_post.py` — added `--global-context` argument
 - `scripts/batch_generate.py` — passes `--global-context` to every post
 
-## Phase 7 — Job Application Tailoring Tool
+## Current Status
 
-New tab in admin panel: "Job Applications"
+**Phase 7 complete — Job Application Tailoring Tool working**
 
-### Features
-- **Job post input** — paste text, upload PDF, or enter URL
-- **Base resume selector** — dropdown of PDFs in `data/`
-- **Project selector** — checklist of all posts to include as context
-- **Resume tailoring** — ATS-optimized, keywords matched, relevant experience highlighted
-- **Cover letter generation** — draws from resume + selected project posts
-- **Output design** — minimal, monochromatic, professional "ZEN" aesthetic
-- **Export** — PDF and DOCX formats
-- **LLM tasks** — uses same file-based Claude Code enhance pattern (input/output txt files)
-- **Dependencies** — pdf skill and docx skill from `/mnt/skills/public/`
+**URL:** https://salman-oraibi.github.io/portfolio
+**Admin:** `python scripts/server.py` → http://127.0.0.1:5000
+
+### Completed this session
+
+- **Rollback feature:**
+  - In-browser rollback button in action bar (appears after enhance loads, hides on save/switch)
+  - Server-side `.bak` backup written to `content/backups/<slug>.md.bak` on every save
+  - `GET /api/posts/<slug>/backup` route to retrieve backup content
+- **Phase 7 Applications tab in admin panel:**
+  - Job post input — paste text or fetch URL (`/api/jobs/fetch-url`)
+  - Resume selector loaded from `data/` (`/api/jobs/resumes`)
+  - Project checklist with Select All / Clear All (`/api/jobs/posts`)
+  - Claude Code file-based tailoring workflow (`content/tailor_input.txt` → `content/tailor_output.txt`)
+  - WeasyPrint PDF generation for resume and cover letter (`/api/jobs/generate-pdf`)
+  - ZEN B&W typography-focused document templates (`scripts/templates/resume.html`, `coverletter.html`)
+  - Download buttons for both PDFs, preview link
+  - `content/output/` directory for generated PDFs
+- **New server routes:** `/api/jobs/tailor`, `/api/jobs/check-output`, `/api/jobs/tailor-output`
 
 ---
 
@@ -283,9 +292,7 @@ New tab in admin panel: "Job Applications"
 
 ### Next Session — Pick Up Here
 
-1. Add rollback feature to admin panel (split into two prompts):
-   - Part 1: in-browser rollback (admin.html only)
-   - Part 2: server-side .bak file backup (server.py only)
-2. Test enhance flow on Fab'n Box post
-3. Content review — enhance weak posts one by one
-4. UI polish — carousel, image gallery, visual redesign
+1. Refine resume and cover letter output quality
+2. UI polish — post card carousel, image gallery, visual redesign
+3. Content review — enhance weak posts with leadership framing
+4. Test full job application workflow end to end

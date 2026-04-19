@@ -1,0 +1,346 @@
+=== JOB POST ===
+Job Summary
+Candidate Profile
+Responsibilities
+1.      Assist in conducting literature reviews and summarizing scientific articles
+
+2.      Support data collection, data entry, and database organization
+
+3.      Help with sample processing and basic laboratory procedures (if applicable)
+
+4.      Assist in bioinformatics/statistical analysis under supervision
+
+5.      Prepare figures, tables, and draft sections for reports or manuscripts
+
+6.      Maintain accurate research records and documentation
+
+7.      Support ethics submission and regulatory paperwork preparation
+
+8.      Coordinate meetings, schedules, and communication with collaborators
+
+9.      Help manage research files, protocols, and project timelines
+
+10.  Participate in presentations, progress updates, and team discussions
+
+Write a pipelines and execute them
+Qualification
+Master Bioinformatics
+
+=== CURRENT RESUME ===
+ 
+Salman Alaraibi 
+Innovation Strategy and  R&D Leader with 10+ years of multi-disciplinary 
+experience. Specialist in directing cross-functional teams and aligning 
+technical development with business strategy to translate hardware and 
+software concepts into high-impact, market-ready solutions. 
+ 
+ 
+ 
+ 
+Manama, Bahrain  
++973 36477647 
+araibi.salman@gmail.com  
+linkedin.com/salman-alaraibi 
+ 
+PROFESSIONAL EXPERIENCE 
+Fab Lab Bahrain | Co-Founder / Program Development Lead 
+2016– Present 
+-​
+Innovation Leadership: Spearheaded the strategic launch of 
+Bahrain’s first Fab Lab under MIT’s Fab Foundation global network, 
+establishing and supporting a local &regional  technology 
+ecosystem. 
+-​
+Strategic Growth: Developed and executed branding and 
+partnership strategies with global stakeholders to drive long-term 
+program impact and organizational visibility. 
+-​
+Design Strategy: Orchestrated Design Sprints to identify 
+stakeholders requirements, delivering physical and digital 
+prototypes that secured interactive user testing and feedback. 
+-​
+Knowledge Transfer: Qualified as a regional instructor for MIT’s 
+Fab Academy, managing a distributed global curriculum in digital 
+fabrication. 
+-​
+Operational Excellence: Curated workshops to identify technology 
+knowledge gaps, leading to the development of programs that 
+increased stakeholder STEAM KPIs and ESG targets. 
+Archetype Foundry Consultancy | Partner, R&D Lead  
+2014 – Present 
+-​
+Business Model Innovation: Developed a financially sustainable 
+operating model for a community driven digital fabrication space 
+scaling outreach to 2,000+ beneficiaries within the first 5 years . 
+-​
+Strategic Consulting: Appointed by WIPO and the Ministry of 
+Commerce as a National Consultant to draft the industrial 
+intellectual property (IP) strategy for Bahrain. 
+-​
+R&D Management: Led collaborative R&D projects with the 
+University of Bahrain, supervising senior engineering projects and 
+integrating academic research into commercial product roadmaps. 
+-​
+Agile Deployment: Implemented Agile methodologies across 
+cross-functional teams, resulting in a measurable boost in project 
+efficiency and faster product development cycles. 
+CORE COMPETENCIES 
+​
+Leadership:  
+​
+Innovation Strategy, R&D 
+Management, Cross-functional 
+Team Leadership, Mentorship & 
+Thought Leadership. 
+​
+Design & Strategy:  
+​
+Design Thinking, The Design 
+Sprint (Google Ventures), Product 
+Lifecycle Management (PLM), 
+Strategic Growth. 
+​
+Digital Technology: 
+​
+Digital Fabrication and 
+Prototyping, Embedded Systems, 
+Image Processing Algorithms, 
+Version Control, Medical Data 
+Analysis. 
+Specialized Knowledge: 
+Intellectual Property (IP) Strategy, 
+Sustainability Innovation, 
+Biomedical Research. 
+EDUCATION 
+M.Sc. in Biomedical 
+Engineering, Magna Cum 
+Laude 
+University of Bern, Switzerland  
+Doctor of Medicine (MUDr.) 
+with Honors 
+Comenius University, Slovak 
+Republic  
+ 
+
+
+American University of Bahrain | External Lecturer  
+Sept 2023– Jan 2024 
+-​
+Mentorship: Designed and implemented project-based learning 
+materials for Digital and Embedded Systems, fostering a culture of 
+continuous improvement and practical technology application. 
+University of Bern, Institute for Surgical Technology | 
+Researcher 
+2011 – 2014 
+-​
+Research and Product Development: Member of the core R&D team 
+that developed a soft tissue simulation solution for 
+CranioMaxilloFacial Surgery, which successfully launched as a 
+commercial surgical diagnostic and planning product. 
+-​
+Medical Technology: Evaluated and compared Image Segmentation 
+softwares for a major pharmaceutical company, providing strategic 
+recommendations that streamlined clinical drug trials and 
+improved data accuracy. 
+-​
+Academic Contribution: Co-authored and contributed to published 
+research on 3D face reconstruction, soft tissue simulation and bone 
+graft selection algorithms as a clinical expert. 
+Salmaniya Medical Complex, MOH Bahrain | Surgeon 
+2000 – 2010 
+ 
+VOLUNTEERING & LEADERSHIP 
+Aramco’s Innovation Ecosystem Society  and Think Leaders 
+Initiative 
+Founding Member 
+PUBLICATIONS 
+“Fabrication of novel microreactors in-house..” 
+Chemical Engineering Processing. 
+“3D Face Reconstruction from 2D Pictures...”  
+ Annals of Biomedical Engineering. 
+“Design of adaptive mold machine...”  
+IET Conference Proceedings. 
+ 
+CERTIFICATIONS  
+Diploma in Digital 
+Fabrication and Prototyping 
+(MIT’s FAB Academy). 
+SELECTED INNOVATION PROJECTS 
+ADIDAS (HARDEN7):  
+Led research and concept 
+development in biomechanics and 
+performance enhancement for an 
+NBA player’s signature footwear. 
+ARAMCO (OXYGEM):  
+Directed the research design and 
+development of a pervasive health 
+wearable within Aramco’s IT 
+Future LAB & WAED program.  
+WIPO (Y2IP): 
+Designed an educational kit and 
+gamified learning strategy for the 
+World Intellectual Property 
+Organization to enhance 
+engagement and IP retention in 
+Bahrain 
+BAHRAIN FIBER GLASS 
+(SMART Tooling):  
+Led the design and development of 
+an adaptive, rapid molding 
+machine for applications in the 
+composite industry.  
+UNESCO (ARCWH):  
+Managed the design of an 
+environmental preservation project 
+for the Arab Regional Centre for 
+World Heritage, to protect and raise 
+awareness about migratory birds. 
+ 
+
+
+=== RELEVANT PROJECTS ===
+### Biodiesel Microreactor Research with University of Bahrain
+Academic research in chemical process intensification frequently stalls at the prototype stage. Designing a microreactor geometry is a computational and chemical problem; fabricating one with the precision required for meaningful experimental results is a manufacturing problem. Most university labs aren't equipped for both. Fab Lab Bahrain's digital fabrication infrastructure filled that gap for the University of Bahrain's Chemical Engineering Department — and what started as a technical collaboration became a multi-year research partnership with published results and 15 trained student engineers.
+
+## The Problem
+
+Conventional biodiesel production is energy-intensive and cost-heavy at small to medium scale. Microreactors — miniaturised flow chemistry platforms — offer a path to process intensification: higher yields, lower energy consumption, and reduced reagent waste relative to batch processing. But the research required to validate microreactor geometries for biodiesel production demands physical prototypes with precise internal geometries, made from materials chemically compatible with the reaction environment.
+
+The University of Bahrain's Chemical Engineering Department had the research expertise but not the fabrication capability. Designing multiple microreactor variants — different geometries, different channel configurations — and fabricating them with sufficient precision for comparative experimental testing required access to high-resolution laser cutting and fine m
+
+### Biomechanics Research for the Adidas Harden 7
+Most R&D work disappears into a report. This project didn't. The biomechanical concepts and physical prototypes developed at Archetype Foundry fed directly into the Adidas Harden 7 — a globally released performance basketball shoe that hit retail in February 2023. Getting from an idea about forefoot propulsion to a product worn by NBA players is not a straight line, and bridging that gap was the whole challenge.
+
+## The Problem
+
+Elite basketball players generate exceptional forces through the forefoot during explosive lateral cuts, low-center-of-gravity drives, and step-back sequences. Conventional sole constructions treat the forefoot as a passive structure — they resist and absorb load rather than channelling it. The result is wasted propulsive energy and accumulated fatigue across the course of a game.
+
+The brief from Adidas through Archetype Foundry was deliberately open: identify the specific biomechanical limitations in existing basketball footwear around forefoot propulsion, and develop concepts that were concrete enough to evaluate and potentially manufacture. There was no predefined solution. The work had to start with the science.
+
+## What I Built
+
+My background sits at the intersection of biomedical engineering and applied design, and this project drew on both. I began with a kinematic and kinetic analysis of Harden's movement profile — the specific patterns of load transfer, toe-off mechanics, and lateral-to-linear transitions that characterise his playing style. 
+
+### Building Capacities Through Digital Fabrication
+Building a Fab Lab is straightforward compared to building the ecosystem around it. The machines, the space, the network membership — those come together in months. The harder work is making the facility matter: designing the programs that connect it to universities, schools, government, industry, and culture; finding the institutional partnerships that give those programs staying power; and developing the instructors and alumni who carry the knowledge forward independently.
+
+That is what I built at Fab Lab Bahrain, over the better part of a decade, through Archetype Foundry.
+
+## The Problem
+
+Bahrain had no digital fabrication infrastructure and no culture of maker education when we launched in 2014. The skills gap was real — engineers, designers, and students across the country had ideas that required prototyping capability they couldn't access locally. Universities were supervising final year projects with no path from concept to physical prototype. Government agencies had STEAM and digital transformation mandates with no programmatic delivery mechanism.
+
+The challenge was not to build one program but to build a platform: a set of layered, mutually reinforcing initiatives that would grow the digital fabrication and innovation ecosystem in Bahrain and make Fab Lab Bahrain structurally necessary to it.
+
+## What I Built
+
+**Fab Academy Bahrain**: I qualified as a regional instructor under MIT's Fab Foundation and ran Fab Academy — a six-month, graduate-level diploma in digital 
+
+### Fab Academy Bahrain — MIT Digital Fabrication Program
+Fab Academy is not a course about 3D printing. It is a graduate-level, project-based diploma that covers the full digital fabrication stack — from electronics design and embedded programming to CNC machining, composites, and final project integration — delivered simultaneously across a global network of Fab Labs, supervised by instructors qualified by MIT's Fab Foundation. Getting it to Bahrain required qualifying as a regional instructor, building the local delivery infrastructure, and establishing the institutional partnerships needed to make it accessible and funded for Bahraini students.
+
+## The Problem
+
+Bahrain's technology education pipeline had a structural gap at the applied, hands-on level. Universities produced engineers who could simulate and design; what the market increasingly required were engineers who could also fabricate — who understood the translation from digital model to physical object, from circuit schematic to working PCB. That combination of design and fabrication competency was not being systematically developed anywhere in the country.
+
+Fab Academy addresses exactly that gap, but it requires a qualified local instructor and a fully equipped Fab Lab to deliver. It also requires funding — the program is intensive and requires six months of dedicated engagement that most students can't self-fund alongside study or work. Finding the institutional partnership that could make it financially accessible was as important as the pedagogical delivery.
+
+## What
+
+### Fab'n Box — Train-The-Trainers Program for Educators
+The bottleneck in technology education isn't access to machines — it's educators who know how to use them pedagogically. Putting a 3D printer in a school classroom changes nothing if the teacher has no framework for turning it into learning. Fab'n Box was built to solve that problem: a Train-The-Trainers program for educators in Bahrain's technical and vocational public schools, delivered in partnership with the Ministry of Education and the American Embassy, with a portable digital fabrication kit designed to enable ad-hoc maker activities anywhere.
+
+## The Problem
+
+Bahrain's technical and vocational public schools had STEAM mandates but lacked educators trained to deliver digital fabrication activities with confidence. The Fab Lab's infrastructure was purpose-built for this kind of learning, but it wasn't portable — a class couldn't just come to the Fab Lab when they needed it, and the Fab Lab couldn't relocate to every school.
+
+The challenge was to design a program that would train teachers as practitioners first, then give them a portable toolkit that let them run digital fabrication activities in their own classrooms without needing access to a full Fab Lab. The content had to be pedagogically sound, practically achievable with the toolbox, and adaptable to different science and technology topics.
+
+## What I Built
+
+I designed the full program curriculum and content, structured around digital fabrication principles and applied through project-based learning activities. Th
+
+### Industry 4.0 Digital Transformation with GOIC
+The Gulf's industrial sector knows Industry 4.0 exists. Conferences are full of it. What's rare is industrial engineers and technicians who have actually configured an IoT sensor, built a digital workflow, or operated fabrication equipment with a hands-on understanding of the underlying process. The GOIC program — commissioned by the Gulf Organization for Industrial Consultancy in partnership with the Ministry of Industry, Commerce and Tourism — was designed to close that gap through practical training, not presentation.
+
+## The Problem
+
+IR 4.0 adoption in Gulf industry is slowed by two things: awareness of what the technologies actually do at the operational level, and the practical skill to implement them. Most awareness programs address the first problem with more awareness. The GOIC brief was to address the second — to give engineers and technicians from real industrial entities the hands-on experience to move from awareness to application.
+
+The program had to cover both digital fabrication tools and workflow, and industrial IoT — two distinct technical domains that together represent the core of the IR 4.0 skill set for industrial operations. The target audience were practitioners, not managers: the people who would actually deploy and operate these technologies.
+
+## What I Built
+
+I designed the full program content and developed the IoT platform hardware and software used for the training's practical exercises. The platform was purpose-built for the program: a hardware/
+
+### OXYGEM Health Wearable for Aramco
+Most health wearables solve the data problem and ignore the behaviour problem. They measure faithfully but rarely change anything. When Aramco commissioned the development of OXYGEM, the brief was clear: build a health wearable that drives genuine habit modification, not just passive monitoring. I led the project from the first feasibility sketch through to a fully engineered product with a functional mobile application.
+
+## The Problem
+
+Occupational health in high-intensity industrial environments is a persistent challenge. Workers may go through years of routine health screening without ever developing the daily habits that prevent the conditions being screened for. The gap is in engagement — connecting individuals to their own health data in a way that is personally meaningful and motivating, not clinical and forgettable.
+
+The challenge for OXYGEM was to bridge that gap through hardware and software design. The wearable needed to capture relevant health signals in a compact, wearable form factor. The application needed to make that data compelling through gamification — rewarding healthy behaviour, building streaks, and creating a loop of awareness and action.
+
+## What I Built
+
+I managed the project across the full product development cycle. Starting from product definition and concept feasibility, I scoped the technical requirements, validated the sensor configuration, and established the form factor constraints for the device.
+
+The detailed design engineering phase cover
+
+### Smart Capsule — Portable UVC Water Purification Device
+Access to safe drinking water on small water vessels — fishing boats, patrol crafts, recreational dinghies — is frequently assumed rather than engineered. Water purification systems designed for fixed installations don't scale down well, and chemical methods carry their own risks in enclosed marine spaces. The Smart Capsule project set out to change that: a point-of-use UVC purification device, compact enough for a small vessel, validated in a biosafety lab, and built to survive real marine conditions.
+
+## The Problem
+
+The Arabian Gulf Bio-Remedies client needed a purification solution that could be deployed on small water vessels without requiring shore power, complex installation, or specialist maintenance. Existing point-of-use UV systems were either too bulky, too power-hungry, or designed for fixed freshwater plumbing — none were suited to the compact, portable, marine-environment use case.
+
+The engineering brief covered everything from concept feasibility through to high-fidelity prototype and lab testing. The device had to fit a compact form factor, maintain reliable UVC dosing across variable flow conditions, and operate from onboard vessel power sources. Lab validation against common water contamination microbes was a hard requirement before the client could proceed to user testing.
+
+## What I Built
+
+The project ran across two sites — Archetype Foundry for detailed design engineering and Fab Lab Bahrain for electronic circuit design, fabrication, and prototype iterat
+
+### Smart Composite Tooling for Bahrain Fiberglass
+Composites manufacturing is a field where the tooling that shapes a product can cost more than the product itself. Complex topologies — the curves, undercuts, and compound geometries that make composite parts structurally efficient — demand moulds that are time-intensive to design and expensive to fabricate at scale. When Bahrain Fiberglass came to Archetype Foundry looking for a better way, I led the research and development effort to build one.
+
+## The Problem
+
+Traditional tooling for large-scale composite articles relies on machined metal or hand-laid fibreglass moulds. These approaches work, but they're expensive, slow to iterate, and brittle when the design changes — which it always does. The core challenge was to find a way to rapidly create tooling for complex topologies without sacrificing the dimensional accuracy or surface quality that composite layup demands.
+
+The brief covered the full scope: concept research, prototyping, simulation, and delivery of a minimum viable product with both hardware and software components. There was no off-the-shelf answer. This was a genuine R&D problem.
+
+## What I Built
+
+I approached the project through three parallel tracks: visualization and simulation, design and engineering, and physical fabrication.
+
+On the research side, I mapped the failure modes of existing tooling approaches and identified the specific geometric and material constraints that drove cost. That analysis shaped the concept: a modular, reconfigurable tooling syst
+
+### TechStride — Empowering Bahraini Youth with Digital Skills
+Most technology awareness programs for young people are passive. Students attend, they watch, they listen, and they leave with an appreciation of technologies they didn't touch. TechStride was built on a different premise: that the students most likely to pursue careers in industrial robotics, AI, or game design are the ones who have actually built something — who have experienced the moment when an idea becomes a prototype, and who can connect that experience to a career direction. I led the development and delivery of TechStride at Fab Lab Bahrain as a project-centred intensive program for high school students and fresh university entrants.
+
+## The Problem
+
+Bahrain's transition to an innovation economy requires a pipeline of technically capable young people entering university with a genuine interest in technology disciplines — not just students who selected engineering because it seemed employable. The challenge is exposure and experience: most Bahraini students reach their university application having never operated industrial equipment, written a line of code for a physical system, or designed something that moves.
+
+TechStride was designed to address that gap through intensive, project-driven experience across industrial robotics, AI, machine learning, and game design. The target audience was high school students and fresh university entrants — young people at the exact decision point where a compelling hands-on experience can redirect academic and career choices.
+
+## W
+
+=== INSTRUCTIONS FOR RESUME ===
+Rewrite the resume to:
+- Match keywords from the job post for ATS optimization
+- Highlight most relevant experience and projects
+- Keep same sections but reorder/emphasize based on job requirements
+- Use action verbs and quantified achievements where possible
+- Output as structured JSON with sections:
+  {name, contact, summary, experience, education, skills, projects}
+
+=== INSTRUCTIONS FOR COVER LETTER ===
+Write a cover letter that:
+- Opens with a specific hook related to the role
+- References 2-3 specific projects from the portfolio
+- Connects experience to job requirements
+- Professional but personal tone
+- Max 400 words
+- Output as plain text with paragraph breaks

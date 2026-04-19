@@ -1,0 +1,132 @@
+{#
+Sample data for testing:
+name = "Salman Al-Araibi"
+date = "19 April 2026"
+contact = {"email": "araibi.salman@gmail.com", "phone": "+973 0000 0000", "linkedin": "linkedin.com/in/salman", "location": "Bahrain"}
+cover_letter = "Dear Hiring Manager,\n\nOpening hook paragraph connecting to the specific role.\n\nSecond paragraph referencing 2-3 portfolio projects.\n\nThird paragraph connecting experience to job requirements.\n\nI would welcome the opportunity to discuss how my background aligns with your team's goals."
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: 210mm 297mm;
+    margin: 18mm 16mm;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.5;
+  }
+
+  /* ── Header ── */
+  .header {
+    margin-bottom: 10pt;
+  }
+
+  .header-name {
+    font-size: 24pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.1;
+    margin-bottom: 5pt;
+  }
+
+  .header-contact {
+    font-size: 9pt;
+    color: #555;
+    letter-spacing: 0.02em;
+  }
+
+  .header-contact span + span::before {
+    content: " · ";
+    color: #999;
+  }
+
+  .rule {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 8pt 0;
+  }
+
+  /* ── Date ── */
+  .date-line {
+    font-size: 9pt;
+    text-align: right;
+    margin-bottom: 22pt;
+    color: #000;
+  }
+
+  /* ── Body ── */
+  .body {
+    font-size: 10pt;
+    line-height: 1.7;
+    margin-bottom: 28pt;
+  }
+
+  .body p {
+    margin-bottom: 12pt;
+  }
+
+  .body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Sign-off ── */
+  .signoff {
+    font-size: 10pt;
+    line-height: 1.9;
+  }
+
+  .signoff-name {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-name">{{ name }}</div>
+  <div class="header-contact">
+    {% if contact.email    %}<span>{{ contact.email }}</span>{% endif %}
+    {% if contact.phone    %}<span>{{ contact.phone }}</span>{% endif %}
+    {% if contact.linkedin %}<span>{{ contact.linkedin }}</span>{% endif %}
+    {% if contact.location %}<span>{{ contact.location }}</span>{% endif %}
+  </div>
+</div>
+<hr class="rule">
+
+<!-- Date -->
+<div class="date-line">{{ date }}</div>
+
+<!-- Body paragraphs -->
+<div class="body">
+  {% for para in cover_letter.split("\n\n") %}
+  {% set p = para.strip() %}
+  {% if p %}
+  <p>{{ p }}</p>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Sign-off -->
+<div class="signoff">
+  <div>Sincerely,</div>
+  <br>
+  <div class="signoff-name">{{ name }}</div>
+</div>
+
+</body>
+</html>
